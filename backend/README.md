@@ -94,9 +94,6 @@ This in the real world would translate to an app like- udemy.
 
 - GET /admin/courses
   Description: Returns all the courses
-  Input header: {
-    authorization: 'Bearer <your-token>'
-  }
   Output: {
     courses: [
         {
