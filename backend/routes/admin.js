@@ -1,18 +1,26 @@
 const { Router } = require('express');
 const adminMiddleware = require('../middlewares/admin');
 const router = Router();
-const inputValidation = require('../middlewares/inputValidation');
+const signupValidation = require('../middlewares/signupValidation');
+const courseValidation = require('../middlewares/courseValidation');
 const { Admin, Course } = require('../db/index');
 const jwt = require('jsonwebtoken');
 const { JWT_SECRET } = require('../config');
 
-router.post('/signup',inputValidation, async (req, res) => {
+router.post('/signup',signupValidation, async (req, res) => {
     const body = req.body;
     try {
-        const response = await Admin.create(body);
-        res.json({
-            msg: "Admin created successfully"
-        })
+        const user = await Admin.findOne(body);
+        if(!user) {
+            const response = await Admin.create(body);
+            res.json({
+                msg: "Admin created successfully"
+            })
+        } else {
+            res.json({
+                msg: "An Admin account is already exist with this username and password"
+            })
+        }
     } catch(err) {
         res.status(403).json({
             msg: "Something went wrong"
@@ -45,7 +53,7 @@ router.post('/signin', async (req, res) => {
 })
 
 
-router.post('/courses/add', adminMiddleware, async (req, res) => {
+router.post('/courses/add', adminMiddleware, courseValidation, async (req, res) => {
     const body = req.body;
     try {
         const course = await Course.findOne(body);
@@ -79,21 +87,26 @@ router.get('/courses', async (req, res) => {
     }
 })
 
-router.delete('/courses/remove', adminMiddleware, (req, res) => {
-    const courseId = req.body.courseId;
+router.delete('/courses/remove/:courseId', adminMiddleware, async (req, res) => {
+    const courseId = req.params.courseId;
     try {
-        const course = await Course.findOneAndDelete({ courseId });
+        const course = await Course.findOneAndDelete({ _id:courseId });
         res.json({
             msg: "Course removed successfully"
+        })
+    } catch (err) {
+        res.status(500).json({
+            msg: "Something went wrong"
         })
     }
 })
 
-router.put('/courses/update/:courseId', adminMiddleware, (req, res) => {
+router.put('/courses/update/:courseId', adminMiddleware, async (req, res) => {
     const body = req.body;
     const courseId = req.params.courseId;
     try {
-        const course = await Course.findOneAndUpdate({ courseId }, body);
+        const course = await Course.findByIdAndUpdate({ _id:courseId }, body);
+        console.log(course);
         res.json({
             msg: "Course updated successfully"
         })

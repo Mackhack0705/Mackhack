@@ -53,7 +53,7 @@ This in the real world would translate to an app like- udemy.
     msg: "Admin is successfully registered on the platform"
   }
 
-- POST /admin/sigin
+- POST /admin/signin
   Description: Logs in an admin account.
   Input body: {
     username: 'makehack@gmail.com',
