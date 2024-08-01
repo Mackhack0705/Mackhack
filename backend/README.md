@@ -63,18 +63,6 @@ This in the real world would translate to an app like- udemy.
     token: 'hakjhfkeuheuhk'
   }
 
-#### User
-- GET /admin/users/purchasedCourseUsers
-  Description: Returns all the users who purchased admin courses
-  Input headers: {
-    authorization: 'Bearer <your-token>;
-  }
-  Output: [
-    {
-        username: 'mahipal',
-        purchasedCourse: 'Sales Cloud'
-    }, ....
-  ]
 
 #### Course
 - POST /admin/courses/add
