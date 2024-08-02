@@ -1,6 +1,6 @@
 // User Middlewar for handling authentication
 const jwt = require('jsonwebtoken');
-const JWT_SECRET = require('../config');
+const { JWT_SECRET } = require('../config');
 
 function userMiddleware(req, res, next) {
     // Implement authentication logic
@@ -8,10 +8,13 @@ function userMiddleware(req, res, next) {
     const token = req.headers.authorization;
     const originalToken = token.split(" ")[1];
     try {
-        jwt.verify(originalToken, JWT_SECRET);
+        const decodedValue = jwt.verify(originalToken, JWT_SECRET);
+        req.username = decodedValue.username;
         next();
     } catch (err) {
-        console.log(err);
+        res.status(401).json({
+            msg:"User Token is invalid"
+        })
     }
 }
 

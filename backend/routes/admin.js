@@ -10,7 +10,7 @@ const { JWT_SECRET } = require('../config');
 router.post('/signup',signupValidation, async (req, res) => {
     const body = req.body;
     try {
-        const user = await Admin.findOne(body);
+        const admin = await Admin.findOne(body);
         if(!user) {
             const response = await Admin.create(body);
             res.json({
@@ -32,7 +32,7 @@ router.post('/signin', async (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
     try {
-        const user = await Admin.findOne({ username, password });
+        const admin = await Admin.findOne({ username, password });
         if(user) {
             const token = jwt.sign({
                 username

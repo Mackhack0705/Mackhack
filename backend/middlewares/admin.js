@@ -11,7 +11,9 @@ function adminMiddleware(req, res, next) {
         jwt.verify(originalToken, JWT_SECRET);
         next();
     } catch(err) {
-        console.log(err);
+        res.json({
+            msg: "Admin Token is invalid"
+        })
     }
 }
 

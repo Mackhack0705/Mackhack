@@ -141,8 +141,8 @@ This in the real world would translate to an app like- udemy.
     username: 'chaitanya@gmail.com',
     password: 'Chaitanya'
   }
-  Output: headers: {
-    authorization: 'Bearer <your-token>'
+  Output: {
+    token: 'afkjhreuru344u8'
   }
   
 #### Course
