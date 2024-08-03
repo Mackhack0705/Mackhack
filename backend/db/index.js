@@ -1,8 +1,9 @@
 // Import mongoose library
 const mongoose = require('mongoose');
+const dotenv = require('dotenv').config();
 
 // Connect to the mongodb instance
-mongoose.connect('mongodb+srv://Rajeshmali:1234@cluster0.alfqfb4.mongodb.net/courses');
+mongoose.connect(process.env.MONGO_URL);
 
 // Create Schema
 

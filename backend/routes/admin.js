@@ -11,7 +11,7 @@ router.post('/signup',signupValidation, async (req, res) => {
     const body = req.body;
     try {
         const admin = await Admin.findOne(body);
-        if(!user) {
+        if(!admin) {
             const response = await Admin.create(body);
             res.json({
                 msg: "Admin created successfully"
