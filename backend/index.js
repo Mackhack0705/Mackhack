@@ -4,7 +4,9 @@ const bodyParser = require('body-parser');
 const adminRoute = require('./routes/admin');
 const userRoute = require('./routes/user');
 const dotenv = require('dotenv').config();
+const cors = require('cors');
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use('/admin', adminRoute);
 app.use('/user', userRoute);
