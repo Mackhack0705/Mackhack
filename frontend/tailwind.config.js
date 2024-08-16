@@ -8,6 +8,10 @@ export default {
     extend: {
       fontFamily: {
         questrial: ["Questrial", "sans-serif"]
+      },
+      backgroundImage: {
+        'login-texture': "url('/images/login.jpg')",
+        'background-texture': "url('/images/background.jpg')"
       }
     },
   },
