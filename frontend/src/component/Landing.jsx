@@ -4,7 +4,7 @@ import CategorySection from './CategorySection'
 const Landing = () => {
   return (
     <div className='h-full w-full'>
-      <BannerSection />
+      <BannerSection /> 
       <CategorySection />
     </div>
   )

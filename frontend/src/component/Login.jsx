@@ -1,17 +1,14 @@
 import axios from "axios";
 import { useRef } from "react"
 import { useNavigate } from "react-router-dom";
-import { useSetRecoilState } from "recoil";
-import { loggedInAtom } from "../store/atoms/loggedIn";
 
-const Login = () => {
+const Login = ({ setIsLoggedIn }) => {
   const usernameRef = useRef();
   const passwordRef = useRef();
   const showUsernameDiv = useRef();
   const showPasswordDiv = useRef();
 
   const navigate = useNavigate();
-  const setLoggedIn = useSetRecoilState(loggedInAtom);
 
   function SubmitLogin() {
     const username = usernameRef.current.value;
@@ -36,7 +33,7 @@ const Login = () => {
     })
     .then((res) => {
       window.localStorage.setItem('token', res.data.token);
-      setLoggedIn(true);
+      setIsLoggedIn(true);
       navigate("/");
     })
   }
