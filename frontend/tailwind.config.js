@@ -12,6 +12,19 @@ export default {
       backgroundImage: {
         'login-texture': "url('/images/login.jpg')",
         'background-texture': "url('/images/background.jpg')"
+      },
+      keyframes: {
+        loading: {
+          "0%": {
+            strokeDashoffset: 4500
+          },
+          "100%": { 
+            strokeDashoffset: 0
+          }
+        }
+      },
+      animation: {
+        loading: "loading 18s ease"
       }
     },
   },
