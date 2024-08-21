@@ -73,7 +73,7 @@ const SignUp = () => {
           <br />
           <div
             ref={showFirstnameDiv}
-            className="absolute top-[300px] px-2 text-xs text-left text-red-500 hidden"
+            className="absolute top-[305px] px-2 text-xs text-left text-red-500 hidden"
           >
             {" "}
             * Field is empty
@@ -89,7 +89,7 @@ const SignUp = () => {
           <br />
           <div
             ref={showLastnameDiv}
-            className="absolute top-[375px] px-2 text-xs text-left text-red-500 hidden"
+            className="absolute top-[380px] px-2 text-xs text-left text-red-500 hidden"
           >
             {" "}
             * Field is empty
@@ -98,14 +98,14 @@ const SignUp = () => {
             required
             ref={usernameRef}
             className="rounded-3xl px-4 py-1 font-normal outline-none text-gray-500 border-2 border-gray-400"
-            type="text"
+            type="email"
             placeholder="Username"
           />{" "}
           <br />
           <br />
           <div
             ref={showUsernameDiv}
-            className="absolute top-[450px] px-2 text-xs text-left text-red-500 hidden"
+            className="absolute top-[455px] px-2 text-xs text-left text-red-500 hidden"
           >
             {" "}
             * Field is empty
@@ -114,14 +114,14 @@ const SignUp = () => {
             required
             ref={passwordRef}
             className="rounded-3xl px-4 py-1 font-normal outline-none text-gray-500 border-2 border-gray-400"
-            type="text"
+            type="password"
             placeholder="Password"
           />{" "}
           <br />
           <br />
           <div
             ref={showPasswordDiv}
-            className="absolute top-[525px] px-2 text-xs text-left text-red-500 hidden"
+            className="absolute top-[530px] px-2 text-xs text-left text-red-500 hidden"
           >
             {" "}
             * Field is empty

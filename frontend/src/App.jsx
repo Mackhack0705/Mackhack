@@ -6,6 +6,7 @@ import NavBar from "./component/NavBar";
 import MainNavBar from "./component/MainNavBar";
 import { useGSAP } from "@gsap/react";
 import gsap, { Expo } from "gsap";
+const Course = React.lazy(() => import("./component/Course"));
 const Login = React.lazy(() => import("./component/Login"));
 const SignUp = React.lazy(() => import("./component/SignUp"));
 const Landing = React.lazy(() => import("./component/Landing"));
@@ -81,6 +82,11 @@ function App() {
                   <SignUp />
                 </React.Suspense>
                 } />
+              <Route path="/course/:courseId" element={
+                <React.Suspense fallback={"loading..."}>
+                  <Course />
+                </React.Suspense>
+              } />
             </Routes>
           </BrowserRouter>
         </RecoilRoot>
