@@ -10,16 +10,6 @@ const SearchBar = () => {
   const searchBarRef = useRef();
   let timeoutId;
   function debounce (e) {
-    if(!e.target.value) {
-      searchBarRef.current.classList.add('rounded-3xl');
-      searchBarRef.current.classList.remove('rounded-t-2xl');
-      courseListRef.current.classList.add('hidden');
-    } else {
-      searchBarRef.current.classList.remove('rounded-3xl');
-      searchBarRef.current.classList.add('rounded-t-2xl');
-      courseListRef.current.classList.add('rounded-b-2xl');
-      courseListRef.current.classList.remove('hidden');
-    }
     clearTimeout(timeoutId);
     timeoutId = setTimeout(searchSuggestions, 100, e);
   }
@@ -32,12 +22,16 @@ const SearchBar = () => {
     }
   }
 
+  function emptyInput() {
+    searchBarRef.current.value = '';
+  }
+
   return (
-    <div className="w-full">
-      <input ref={searchBarRef} onInput={debounce} type="text" placeholder='Search' className="w-full h-[40px] rounded-3xl border-2 border-gray-400 px-4 font-medium outline-none text-black"/>
-      <div ref={courseListRef} className="bg-white list-none px-4 absolute top-[64px] left-[489px] w-[340px] border-2 border-t-0 border-gray-400 py-2 hidden">
+    <div className="w-full relative">
+      <input ref={searchBarRef} onInput={debounce} type="Search" placeholder='Search' className="w-full h-[40px] rounded-3xl placeholder-shown:focus:rounded-3xl border-2 border-gray-400 px-4 font-medium outline-none text-black peer focus-within:rounded-t-2xl focus-within:rounded-b-none"/>
+      <div ref={courseListRef} className="bg-white list-none px-4 absolute top-[40px] w-[340px] border-2 border-t-0 border-gray-400 py-2 rounded-b-2xl block peer-placeholder-shown:hidden">
         {courses.map((course) => {
-          return <li key={course._id} className="text-lg font-normal"><Link to={`/course/${course._id}`} >{course.title}</Link></li>
+          return <li key={course._id} className="text-lg font-normal"><Link onClick={emptyInput} to={`/course/${course._id}`} >{course.title}</Link></li>
         })}
       </div>
     </div>
