@@ -3,24 +3,25 @@ const { Course } = require('../db');
 
 const router = Router();
 
-// router.post('/:courseTitle', async (req, res) => {
-//     const courseTitle = req.params.courseTitle;
-
-//     try {
-//         const response = await Course.find({
-//             title: {$regex: courseTitle, $options: 'i'}
-//         });
-//         res.json({
-//             response
-//         })
-//     } catch (err) {
-//         console.log(err);
-//     }
-// })
+router.post('/courses', async (req, res) => {
+    const courseTitle = req.query.q;
+    try {
+        const response = await Course.find({
+            title: {$regex: courseTitle, $options: 'i'}
+        });
+        res.json({
+            response
+        })
+    } catch (err) {
+        res.status(500).json({
+            msg: "something went wrong",
+            err
+        })
+    }
+})
 
 router.post('/suggestions', async (req, res) => {
     const title = req.query.q;
-    console.log(title);
     try {
         const output = await Course.find({
             title: { $regex: title, $options: 'i' }

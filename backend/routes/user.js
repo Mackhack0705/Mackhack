@@ -12,9 +12,10 @@ router.post('/signup', signupMiddleware, async (req, res) => {
     try {
         const user = await User.findOne(body);
         if(!user) {
-            await User.create(body);
+            const userProfile = await User.create(body);
             res.json({
-                msg: "User is created successfully"
+                msg: "User is created successfully",
+                userId: userProfile._id
             })
         } else {
             res.json({

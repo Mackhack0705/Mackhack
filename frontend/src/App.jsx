@@ -1,22 +1,23 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import "./App.css"
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { RecoilRoot } from "recoil";
-import NavBar from "./component/NavBar";
-import MainNavBar from "./component/MainNavBar";
 import { useGSAP } from "@gsap/react";
 import gsap, { Expo } from "gsap";
+import AllCourses from "./component/AllCourses";
+import Teaching from "./pages/Teaching";
+import AdminDashboard from "./pages/AdminDashboard";
+import NavBar from "./component/NavBar";
 const Course = React.lazy(() => import("./component/Course"));
-const Login = React.lazy(() => import("./component/Login"));
-const SignUp = React.lazy(() => import("./component/SignUp"));
-const Landing = React.lazy(() => import("./component/Landing"));
+const Login = React.lazy(() => import("./pages/Login"));
+const SignUp = React.lazy(() => import("./pages/SignUp"));
+const Landing = React.lazy(() => import("./pages/Landing"));
 
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(!!window.localStorage.getItem('token'));
   const webRef = useRef();
   
-
+  
   useGSAP(() => {
     const tl = gsap.timeline({
       onComplete: () => {
@@ -65,7 +66,7 @@ function App() {
       <div ref={webRef} id="web" className="w-full h-0 absolute bottom-0 bg-[#ebfffe] ">
         <RecoilRoot>
           <BrowserRouter>
-          {window.localStorage.length ? <MainNavBar setIsLoggedIn={setIsLoggedIn} /> : <NavBar/>}
+            <NavBar />
             <Routes>
               <Route path="/" element={
                 <React.Suspense fallback={"loading..."}>
@@ -74,7 +75,7 @@ function App() {
                 } />
               <Route path="/login" element={
                 <React.Suspense fallback={"loading..."}>
-                  <Login setIsLoggedIn={setIsLoggedIn}/>
+                  <Login />
                 </React.Suspense>
                 } />
               <Route path="/signup" element={
@@ -82,9 +83,24 @@ function App() {
                   <SignUp />
                 </React.Suspense>
                 } />
+              <Route path="/courses" element={
+                <React.Suspense fallback={"loading..."}>
+                  <AllCourses />
+                </React.Suspense>
+              } />
               <Route path="/course/:courseId" element={
                 <React.Suspense fallback={"loading..."}>
                   <Course />
+                </React.Suspense>
+              } />
+              <Route path="/teaching" element={
+                <React.Suspense fallback={"loading..."}>
+                  <Teaching />
+                </React.Suspense>
+              } />
+              <Route path="/admin/dashboard" element={
+                <React.Suspense fallback={"loading..."}>
+                  <AdminDashboard />
                 </React.Suspense>
               } />
             </Routes>

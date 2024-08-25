@@ -1,26 +1,19 @@
 const { Router } = require('express');
-const adminMiddleware = require('../middlewares/admin');
 const router = Router();
 const signupValidation = require('../middlewares/signupValidation');
 const courseValidation = require('../middlewares/courseValidation');
-const { Admin, Course } = require('../db/index');
+const { User, Course } = require('../db/index');
 const jwt = require('jsonwebtoken');
 const { JWT_SECRET } = require('../config');
+const userMiddleware = require('../middlewares/user');
 
-router.post('/signup',signupValidation, async (req, res) => {
+router.put('/teaching', async (req, res) => {
     const body = req.body;
     try {
-        const admin = await Admin.findOne(body);
-        if(!admin) {
-            const response = await Admin.create(body);
-            res.json({
-                msg: "Admin created successfully"
-            })
-        } else {
-            res.json({
-                msg: "An Admin account is already exist with this username and password"
-            })
-        }
+        const admin = await User.findOneAndUpdate(body);
+        res.json({
+            msg: "You registered as a instructor successfully"
+        })
     } catch(err) {
         res.status(403).json({
             msg: "Something went wrong"
@@ -28,32 +21,10 @@ router.post('/signup',signupValidation, async (req, res) => {
     }
 })
 
-router.post('/signin', async (req, res) => {
-    const username = req.body.username;
-    const password = req.body.password;
-    try {
-        const admin = await Admin.findOne({ username, password });
-        if(user) {
-            const token = jwt.sign({
-                username
-            }, JWT_SECRET);
-            res.json({
-                token
-            })
-        } else {
-            res.status(404).json({
-                msg:"User not found"
-            })
-        }
-    } catch (err) {
-        res.status(403).json({
-            msg: "Something went wrong"
-        })
-    }
-})
 
 
-router.post('/courses/add', adminMiddleware, courseValidation, async (req, res) => {
+
+router.post('/courses/add', userMiddleware, courseValidation, async (req, res) => {
     const body = req.body;
     try {
         const course = await Course.findOne(body);
@@ -87,7 +58,7 @@ router.get('/courses', async (req, res) => {
     }
 })
 
-router.delete('/courses/remove/:courseId', adminMiddleware, async (req, res) => {
+router.delete('/courses/remove/:courseId', userMiddleware, async (req, res) => {
     const courseId = req.params.courseId;
     try {
         const course = await Course.findOneAndDelete({ _id:courseId });
@@ -101,7 +72,7 @@ router.delete('/courses/remove/:courseId', adminMiddleware, async (req, res) => 
     }
 })
 
-router.put('/courses/update/:courseId', adminMiddleware, async (req, res) => {
+router.put('/courses/update/:courseId', userMiddleware, async (req, res) => {
     const body = req.body;
     const courseId = req.params.courseId;
     try {

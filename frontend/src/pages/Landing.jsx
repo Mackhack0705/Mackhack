@@ -1,7 +1,7 @@
-import BannerSection from './BannerSection'
-import Brand from './Brand'
-import CategorySection from './CategorySection'
-import Course from './Course'
+import BannerSection from '../component/BannerSection'
+import Brand from '../component/Brand'
+import CategorySection from '../component/CategorySection'
+import Course from '../component/Course'
 
 const Landing = () => {
   return (
