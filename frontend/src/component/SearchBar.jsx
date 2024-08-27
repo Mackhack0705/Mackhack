@@ -18,7 +18,6 @@ const SearchBar = () => {
   async function enterKey(e) {
     if(e.key == 'Enter') {
       const res = await axios.post(`http://localhost:8000/search/courses?q=${e.target.value}`)
-      console.log(res);
       searchBarRef.current.value = '';
       navigate('/courses', {state: res.data.response});
     }
@@ -38,7 +37,7 @@ const SearchBar = () => {
 
   return (
     <div className="w-full relative">
-      <input ref={searchBarRef} onInput={debounce} onKeyDown={enterKey} type="Search" placeholder='Search' className="w-full h-[40px] rounded-3xl placeholder-shown:focus:rounded-3xl border-2 border-gray-400 px-4 font-medium outline-none text-black peer focus-within:rounded-t-2xl focus-within:rounded-b-none"/>
+      <input ref={searchBarRef} onInput={debounce} onKeyDown={enterKey} type="Search" placeholder='Search' className="w-full h-[40px] rounded-3xl placeholder-shown:focus:rounded-3xl border-2 border-gray-400 px-4 font-medium outline-none text-black peer focus-within:rounded-t-2xl focus-within:rounded-b-none hover:shadow-md"/>
       <div ref={courseListRef} className="bg-white list-none px-4 absolute top-[40px] w-[340px] border-2 border-t-0 border-gray-400 py-2 rounded-b-2xl block peer-placeholder-shown:hidden">
         {courses.map((course) => {
           return <li key={course._id} className="text-lg font-normal"><Link onClick={emptyInput} to={`/course/${course._id}`} >{course.title}</Link></li>

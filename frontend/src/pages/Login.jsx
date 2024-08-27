@@ -14,13 +14,17 @@ const Login = () => {
     try {
       axios.post('http://localhost:8000/user/signin', data)
       .then((res) => {
-        window.localStorage.setItem('token', res.data.token);
-        setIsLoggedIn(false);
+        if(res.data.token) {
+          window.localStorage.setItem('token', res.data.token);
+          setIsLoggedIn(false);
+          navigate("/");
+        } else {
+          alert(res.data.msg);
+        }
       })
-      navigate("/");
     } catch(err) {
       console.log(err);
-      alert(err);
+      alert(err.message);
     }
   }
   return (

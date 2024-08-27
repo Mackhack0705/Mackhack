@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import "./App.css"
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { RecoilRoot } from "recoil";
@@ -8,6 +8,8 @@ import AllCourses from "./component/AllCourses";
 import Teaching from "./pages/Teaching";
 import AdminDashboard from "./pages/AdminDashboard";
 import NavBar from "./component/NavBar";
+import axios from "axios";
+import AddCourse from "./component/AddCourse";
 const Course = React.lazy(() => import("./component/Course"));
 const Login = React.lazy(() => import("./pages/Login"));
 const SignUp = React.lazy(() => import("./pages/SignUp"));
@@ -16,6 +18,25 @@ const Landing = React.lazy(() => import("./pages/Landing"));
 
 function App() {
   const webRef = useRef();
+
+  useEffect(() => {
+    const isLoggedIn = window.localStorage.getItem("token");
+    if(isLoggedIn) {
+      try {
+        const userId = window.localStorage.getItem("userId");
+        axios.get(`http://localhost:8000/user?userId=${userId}`, {
+          headers: {
+            'Authorization': `Bearer ${window.localStorage.getItem("token")}`
+          }
+        })
+        .then((res) => {
+          window.localStorage.setItem("user", JSON.stringify(res.data.user));
+        })
+      } catch(err) {
+        console.log(err);
+      }
+    }
+  }, []);
   
   
   useGSAP(() => {
@@ -101,6 +122,11 @@ function App() {
               <Route path="/admin/dashboard" element={
                 <React.Suspense fallback={"loading..."}>
                   <AdminDashboard />
+                </React.Suspense>
+              } />
+              <Route path="/admin/addCourse" element={
+                <React.Suspense fallback={"loading..."}>
+                  <AddCourse />
                 </React.Suspense>
               } />
             </Routes>

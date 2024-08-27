@@ -5,7 +5,6 @@ import { loggedInAtom } from "../store/atoms/loggedIn";
 
 const NavBar = () => {
   const isLoggedIn = useRecoilValue(loggedInAtom);
-  console.log(isLoggedIn);
 
   return (
     <div>

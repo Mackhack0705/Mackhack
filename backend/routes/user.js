@@ -56,6 +56,20 @@ router.post('/signin', async (req, res) => {
     }
 })
 
+router.get("/", userMiddleware, async (req, res) => {
+    const userId = req.query.userId;
+    try {
+        const user = await User.findById(userId, 'firstName lastName username isAdmin');
+        res.json({
+            user
+        })
+    } catch(err) {
+        res.status(500).json({
+            msg: "Something went wrong"
+        })
+    }
+})
+
 router.get('/courses', async (req, res) => {
     try {
         const courses = await Course.find({});

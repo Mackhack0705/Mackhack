@@ -1,8 +1,8 @@
-const { Router } = require('express');
-const router = Router();
+const express = require('express');
+const router = express.Router();
 const signupValidation = require('../middlewares/signupValidation');
 const courseValidation = require('../middlewares/courseValidation');
-const { User, Course } = require('../db/index');
+const { User, Course, upload } = require('../db/index');
 const jwt = require('jsonwebtoken');
 const { JWT_SECRET } = require('../config');
 const userMiddleware = require('../middlewares/user');
@@ -22,27 +22,31 @@ router.put('/teaching', async (req, res) => {
 })
 
 
+router.use(express.urlencoded({extended: false}))
 
-
-router.post('/courses/add', userMiddleware, courseValidation, async (req, res) => {
+router.post('/courses/add', upload.single('file'), userMiddleware, async (req, res) => {
     const body = req.body;
-    try {
-        const course = await Course.findOne(body);
-        if(!course) {
-            await Course.create(body);
-            res.json({
-                msg: "Course created successfully"
-            })
-        } else {
-            res.json({
-                msg: "Course already exists"
-            })
-        }
-    } catch (err) {
-        res.status(500).json({
-            msg: "Something went wrong"
-        })
-    }
+    console.log(body);
+    console.log(req.file);
+    res.json({
+        file: req.file
+    })
+    // try {
+    //     // const course = await Course.findOne(body);
+    //     // console.log(course);
+    //     try {
+    //         const course = await Course.create(body);
+    //         res.status(200).json({
+    //             msg: "Course created successfully"
+    //         })
+    //     } catch(err) {
+    //         console.log(err);
+    //     }
+    // } catch (err) {
+    //     res.status(200).json({
+    //         msg: "Course already exists"
+    //     })
+    // }
 })
 
 router.get('/courses', async (req, res) => {

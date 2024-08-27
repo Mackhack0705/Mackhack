@@ -15,9 +15,10 @@ const Teaching = () => {
   return (
     <div className="flex justify-around items-center h-[640px] pr-40">
         <img className="h-[640px]" src="/images/teaching.png" alt="" />
-        <div className="bg-[#fcf8f3] h-80 w-[500px] rounded-lg flex justify-center items-center flex-col gap-10">
-            <h2 className="text-3xl font-extrabold">Get Started</h2>
-            <button onClick={showInstructorDashboard} className="bg-[#96C9F4] px-4 py-2 text-lg rounded-md">Get Started</button>
+        <div className="bg-[#01c8b5] text-white h-80 w-[500px] rounded-lg flex justify-center items-center flex-col gap-10">
+            <h2 className="text-3xl font-extrabold">Start Teaching</h2>
+            <p>Start your teaching journey from here.</p>
+            <button onClick={showInstructorDashboard} className="px-4 py-2 text-lg rounded-3xl hover:shadow-md bg-yellow-500">Get Started</button>
         </div>
     </div>
   )
