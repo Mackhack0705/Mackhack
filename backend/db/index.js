@@ -1,46 +1,28 @@
 // Import mongoose library
 const mongoose = require('mongoose');
-const multer = require('multer');
-const { GridFsStorage } = require('multer-gridfs-storage');
-const Grid = require('gridfs-stream');
-const crypto = require('crypto');
-const path = require('path');
 const dotenv = require('dotenv').config();
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const multer = require('multer');
 
 // Connect to the mongodb instance
-mongoose.connect(process.env.MONGO_URL);
-
-const conn = mongoose.connection;
-
-// Init gfs
-let gfs;
-
-conn.once('open', () => {
-    gfs = Grid(conn.db, mongoose.mongo);
-    gfs.collection('uploads');
+mongoose.connect(process.env.MONGO_URL)
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET
 })
 
-// Create Storage engine
-const storage = new GridFsStorage({
-    url: process.env.MONGO_URL,
-    file: (req, file) => {
-      return new Promise((resolve, reject) => {
-        crypto.randomBytes(16, (err, buf) => {
-          if (err) {
-            return reject(err);
-          }
-          const filename = buf.toString('hex') + path.extname(file.originalname);
-          const fileInfo = {
-            filename: filename,
-            bucketName: 'uploads'
-          };
-          resolve(fileInfo);
-        });
-      });
-    }
-  });
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: 'courseContent',
+    allowed_formats: ['jpg', 'png', 'mp4', 'avi', 'mkv'],
+    public_id: (req, file) => file.originalname.split('.')[0],
+  },
+});
 
-  const upload = multer({ storage });
+const upload = multer({ storage });
 
 // Create Schema
 const userSchema = new mongoose.Schema({
@@ -55,9 +37,22 @@ const userSchema = new mongoose.Schema({
     }]
 })
 
+
 const courseSchema = new mongoose.Schema({
-    file: String
-})
+  title: String,
+  description: String,
+  price: Number,
+  imageFileId: mongoose.Schema.Types.ObjectId,
+  instructor: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user'
+  },
+  lessons: [{
+    lessonTitle: String,
+    videoFileId: mongoose.Schema.Types.ObjectId, // Store GridFS file ID or URL here
+    duration: Number
+  }]
+});
 
 const User = mongoose.model('user', userSchema);
 const Course = mongoose.model('course', courseSchema);

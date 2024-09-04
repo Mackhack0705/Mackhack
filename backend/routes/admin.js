@@ -6,6 +6,9 @@ const { User, Course, upload } = require('../db/index');
 const jwt = require('jsonwebtoken');
 const { JWT_SECRET } = require('../config');
 const userMiddleware = require('../middlewares/user');
+const cloudinary = require('cloudinary').v2;
+const streamifier = require('streamifier');
+
 
 router.put('/teaching', async (req, res) => {
     const body = req.body;
@@ -22,15 +25,48 @@ router.put('/teaching', async (req, res) => {
 })
 
 
-router.use(express.urlencoded({extended: false}))
+router.post('/upload-image', upload.single('imageFile'), (req, res) => {
+    const output = req.file;
 
-router.post('/courses/add', upload.single('file'), userMiddleware, async (req, res) => {
-    const body = req.body;
-    console.log(body);
-    console.log(req.file);
+    console.log(output);
     res.json({
-        file: req.file
+        msg: 'file uploaded successfully',
+        output
     })
+
+})
+
+router.post('/upload-video', upload.single('videoFile'), (req, res) => {
+    const fileBuffer = req.file.buffer;
+
+    const uploadStream = cloudinary.uploader.upload_stream({
+            resource_type: 'video'
+        }, 
+        async (error, result) => {
+            if(error) {
+                return res.status(500).json({error: error.message})
+            }
+
+            console.log(result);
+            res.json({
+                result
+            })
+        }
+    );
+
+    streamifier.createReadStream(fileBuffer).pipe(uploadStream);
+
+    // console.log(output);
+    // res.json({
+    //     msg: 'file uploaded successfully',
+    //     output
+    // });
+})
+
+router.post('/courses/add', userMiddleware, (req, res) => {
+    const body = req.body;
+    console.log(body.imageFileId[0]);
+    
     // try {
     //     // const course = await Course.findOne(body);
     //     // console.log(course);

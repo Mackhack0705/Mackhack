@@ -20,3 +20,6 @@ const port = process.env.PORT || 8080 || 3000;
 app.listen(port, () => {
     console.log(`app is listening on port ${port}`);
 })
+
+
+app.timeout = 600000;
