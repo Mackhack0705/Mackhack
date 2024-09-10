@@ -13,13 +13,13 @@ const Course = () => {
   }, [courseId])
 
   return (
-    <div className='border-2 border-black w-full h-full px-10 py-40 flex justify-around'>
-        <div className='px-4 py-2 border-2 border-black h-[200px] w-[500px]'>
-            <h2 className='text-3xl font-bold'>{course.title}</h2>
-            <p className="">{course.description}</p>
-            <p className="font-bold text-2xl">Rs. {course.price}</p>
+    <div className='w-full h-full px-10 py-40 flex justify-around'>
+        <div className='px-4 py-2 h-[200px] w-[550px]'>
+            <h2 className='text-5xl font-bold'>{course.title}</h2>
+            <p className="text-lg">{course.description}</p>
+            <p className="font-bold text-3xl mt-10">Rs. {course.price} /-</p>
         </div>
-        <img src={course.imageLink} alt="" className='w-[400px] h-[200px] rounded-t-lg border-2 border-black'/>
+        <img src={course.imageLink} alt="" className='relative bottom-14 right-10 w-[550px] h-[400px] rounded-lg'/>
     </div>
   )
 }

@@ -2,12 +2,10 @@ const express = require('express');
 const router = express.Router();
 const signupValidation = require('../middlewares/signupValidation');
 const courseValidation = require('../middlewares/courseValidation');
-const { User, Course, upload } = require('../db/index');
+const { User, Course, upload, bucket } = require('../db/index');
 const jwt = require('jsonwebtoken');
 const { JWT_SECRET } = require('../config');
 const userMiddleware = require('../middlewares/user');
-const cloudinary = require('cloudinary').v2;
-const streamifier = require('streamifier');
 
 
 router.put('/teaching', async (req, res) => {
@@ -26,63 +24,87 @@ router.put('/teaching', async (req, res) => {
 
 
 router.post('/upload-image', upload.single('imageFile'), (req, res) => {
-    const output = req.file;
+    const file = req.file;
 
-    console.log(output);
-    res.json({
-        msg: 'file uploaded successfully',
-        output
-    })
+    const output = bucket.file(`images/${Date.now()}_${file.originalname}`);
+
+    const stream = output.createWriteStream({
+        metadata: {
+          contentType: req.file.mimetype,
+        },
+    });
+
+    stream.on('error', (err) => {
+        return res.status(500).json({ err });
+    });
+    
+    stream.on('finish', async () => {
+        const publicUrl = `https://storage.googleapis.com/${bucket.name}/${output.name}`;
+        const fileName = output.name.split('/')[1];
+        const imageFile = {
+            fileName: fileName,
+            path: publicUrl
+        }
+        res.status(200).json({ 
+            msg: 'file uploaded successfully',
+            imageFile
+         });
+    });
+    
+    stream.end(req.file.buffer);
 
 })
 
 router.post('/upload-video', upload.single('videoFile'), (req, res) => {
-    const fileBuffer = req.file.buffer;
+    const file = req.file;
+    const output = bucket.file(`videos/${Date.now()}_${file.originalname}`);
 
-    const uploadStream = cloudinary.uploader.upload_stream({
-            resource_type: 'video'
-        }, 
-        async (error, result) => {
-            if(error) {
-                return res.status(500).json({error: error.message})
-            }
+    const stream = output.createWriteStream({
+        metadata: {
+        contentType: file.mimetype,
+        },
+    });
 
-            console.log(result);
-            res.json({
-                result
-            })
+    stream.on('error', (err) => {
+        return res.status(500).json({ err });
+    });
+    
+    stream.on('finish', async () => {
+        const publicUrl = `https://storage.googleapis.com/${bucket.name}/${output.name}`;
+        const fileName = output.name.split('/')[1];
+        const videoFile = {
+            fileName: fileName,
+            path: publicUrl
         }
-    );
+        res.status(200).json({ 
+            msg: 'file uploaded successfully',
+            videoFile
+         });
+    });
+    
+    stream.end(req.file.buffer);
 
-    streamifier.createReadStream(fileBuffer).pipe(uploadStream);
-
-    // console.log(output);
-    // res.json({
-    //     msg: 'file uploaded successfully',
-    //     output
-    // });
 })
 
-router.post('/courses/add', userMiddleware, (req, res) => {
+router.post('/courses/add', userMiddleware, async (req, res) => {
     const body = req.body;
-    console.log(body.imageFileId[0]);
     
-    // try {
-    //     // const course = await Course.findOne(body);
-    //     // console.log(course);
-    //     try {
-    //         const course = await Course.create(body);
-    //         res.status(200).json({
-    //             msg: "Course created successfully"
-    //         })
-    //     } catch(err) {
-    //         console.log(err);
-    //     }
-    // } catch (err) {
-    //     res.status(200).json({
-    //         msg: "Course already exists"
-    //     })
-    // }
+    try {
+        // const course = await Course.findOne(body);
+        // console.log(course);
+        try {
+            const course = await Course.create(body);
+            res.status(200).json({
+                msg: "Course created successfully"
+            })
+        } catch(err) {
+            console.log(err);
+        }
+    } catch (err) {
+        res.status(200).json({
+            msg: "Course already exists"
+        })
+    }
 })
 
 router.get('/courses', async (req, res) => {

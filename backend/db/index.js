@@ -1,28 +1,26 @@
 // Import mongoose library
 const mongoose = require('mongoose');
 const dotenv = require('dotenv').config();
-const cloudinary = require('cloudinary').v2;
-const { CloudinaryStorage } = require('multer-storage-cloudinary');
+const admin = require('firebase-admin');
+const serviceAccount = require('../course-selling-app-83a6b-firebase-adminsdk-t8xer-9f3aff58e0.json');
 const multer = require('multer');
+const crypto = require('crypto');
+const path = require('path');
+
+
+const upload = multer({ storage: multer.memoryStorage() });
+
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  storageBucket: process.env.STORAGE_BUCKET
+})
+
+const bucket = admin.storage().bucket();
 
 // Connect to the mongodb instance
 mongoose.connect(process.env.MONGO_URL)
-cloudinary.config({
-  cloud_name: process.env.CLOUD_NAME,
-  api_key: process.env.API_KEY,
-  api_secret: process.env.API_SECRET
-})
 
-const storage = new CloudinaryStorage({
-  cloudinary: cloudinary,
-  params: {
-    folder: 'courseContent',
-    allowed_formats: ['jpg', 'png', 'mp4', 'avi', 'mkv'],
-    public_id: (req, file) => file.originalname.split('.')[0],
-  },
-});
-
-const upload = multer({ storage });
 
 // Create Schema
 const userSchema = new mongoose.Schema({
@@ -42,15 +40,21 @@ const courseSchema = new mongoose.Schema({
   title: String,
   description: String,
   price: Number,
-  imageFileId: mongoose.Schema.Types.ObjectId,
+  imageFile: {
+    fileName: String,
+    path: String
+  },
   instructor: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user'
   },
   lessons: [{
     lessonTitle: String,
-    videoFileId: mongoose.Schema.Types.ObjectId, // Store GridFS file ID or URL here
-    duration: Number
+    videoFile: {
+      fileName: String,
+      path: String
+    },
+    duration: String
   }]
 });
 
@@ -60,5 +64,6 @@ const Course = mongoose.model('course', courseSchema);
 module.exports = {
     User,
     Course,
-    upload
+    upload,
+    bucket
 }

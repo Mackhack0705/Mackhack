@@ -11,13 +11,15 @@ const AllCourses = () => {
     }, []);
 
   return (
-    <div className="flex border-2 border-black h-[635px] justify-around p-8">
+    <div className="flex h-[635px] justify-around p-8">
       {
         courses.map((course) => {
-            return (<div key={course._id} className="w-[300px] h-[300px] border-2 border-black">
-              <img src={course.imageLink} alt="" className="h-[70%]"/>
-              <div>{course.title}</div>
-              <div>{course.price}</div>
+            return (<div key={course._id} className="w-[300px] h-[300px] rounded-xl">
+              <img src={course.imageLink} alt="" className="h-[70%] rounded-t-xl"/>
+              <div className="px-3 py-2 text-lg">
+                <div className="font-semibold">{course.title}</div>
+                <div className="">Rs. {course.price}</div>
+              </div>
             </div>)
         })
       }

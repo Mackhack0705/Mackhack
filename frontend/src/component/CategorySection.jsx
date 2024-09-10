@@ -23,7 +23,8 @@ const CategorySection = () => {
         scrub: 2,
         pin: true
       }
-    })
+    });
+    ScrollTrigger.refresh();
   })
 
   return (
@@ -33,16 +34,16 @@ const CategorySection = () => {
       </div>
       <div >
         <div ref={sectionRef} className="h-[80%] w-[320.2vw] flex flex-row relative">
-          <div className='h-[100vh] w-[130vw] flex justify-center items-center text-7xl'>
+          <div className='h-[100vh] w-[130vw] flex justify-center items-center text-9xl font-semibold'>
             <h3>Web Development</h3>
           </div>
-          <div className='h-[100vh] w-[100vw] flex justify-center items-center text-7xl'>
+          <div className='h-[100vh] w-[130vw] flex justify-center items-center text-9xl font-semibold'>
             <h3>Machine Learning</h3>
           </div>
-          <div className='h-[100vh] w-[100vw] flex justify-center items-center text-7xl'>
+          <div className='h-[100vh] w-[130vw] flex justify-center items-center text-9xl font-semibold'>
             <h3>Artificial Intelligence</h3>
           </div>
-          <div className='h-[100vh] w-[100vw] flex justify-center items-center text-7xl'>
+          <div className='h-[100vh] w-[130vw] flex justify-center items-center text-9xl font-semibold'>
             <h3>App Development</h3>
           </div>
         </div>

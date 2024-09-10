@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import "./App.css"
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { RecoilRoot } from "recoil";
-// import { useGSAP } from "@gsap/react";
-// import gsap, { Expo } from "gsap";
+import { useGSAP } from "@gsap/react";
+import gsap, { Expo } from "gsap";
 import AllCourses from "./component/AllCourses";
 import Teaching from "./pages/Teaching";
 import AdminDashboard from "./pages/AdminDashboard";
@@ -17,7 +17,7 @@ const Landing = React.lazy(() => import("./pages/Landing"));
 
 
 function App() {
-  // const webRef = useRef();
+  const webRef = useRef();
 
   useEffect(() => {
     const isLoggedIn = window.localStorage.getItem("token");
@@ -40,10 +40,7 @@ function App() {
   
   
   // useGSAP(() => {
-  //   const tl = gsap.timeline({
-  //     onComplete: () => {
-  //       webRef.current.style.overflow = "auto"; // Re-enable scrolling after animation
-  //     }});
+  //   const tl = gsap.timeline();
 
   //   tl
   //   .to("#fs", {
