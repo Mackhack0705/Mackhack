@@ -90,16 +90,10 @@ router.post('/courses/add', userMiddleware, async (req, res) => {
     const body = req.body;
     
     try {
-        // const course = await Course.findOne(body);
-        // console.log(course);
-        try {
-            const course = await Course.create(body);
-            res.status(200).json({
-                msg: "Course created successfully"
-            })
-        } catch(err) {
-            console.log(err);
-        }
+        const course = await Course.create(body);
+        res.status(200).json({
+            msg: "Course created successfully"
+        })
     } catch (err) {
         res.status(200).json({
             msg: "Course already exists"
@@ -108,8 +102,9 @@ router.post('/courses/add', userMiddleware, async (req, res) => {
 })
 
 router.get('/courses', async (req, res) => {
+    const instructorId = req.query.instructorId;
     try {
-        const courses = await Course.find({});
+        const courses = await Course.find({ instructorId });
         res.json({
             courses
         })

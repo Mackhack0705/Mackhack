@@ -1,7 +1,6 @@
 import gsap from "gsap"
 
 const ReviewSection = ({ review }) => {
-  console.log(`#review${review.id}`)
   let scaleUp = function () {
     gsap.to(`#review${review.id}`, {
       scale: 1.1,

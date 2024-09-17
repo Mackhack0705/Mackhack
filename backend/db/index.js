@@ -44,7 +44,7 @@ const courseSchema = new mongoose.Schema({
     fileName: String,
     path: String
   },
-  instructor: {
+  instructorId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user'
   },

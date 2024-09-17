@@ -5,7 +5,6 @@ import gsap from "gsap";
 
 const LoginNavBar = () => {
     const navigate = useNavigate();
-
     useGSAP(() => {
       gsap.from("#logo", {
         y: 20,
