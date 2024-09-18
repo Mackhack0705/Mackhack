@@ -18,7 +18,7 @@ const Login = () => {
           window.localStorage.setItem('token', res.data.token);
           try {
             const userId = window.localStorage.getItem('userId');
-            const res = await axios.get(`http://localhost:8000/user?userId=${userId}`,{
+            const res = await axios.get(`https://course-selling-website-q42x.onrender.com/user?userId=${userId}`,{
                 headers: {
                   Authorization: `Bearer ${window.localStorage.getItem("token")}`,
                 },
