@@ -6,6 +6,7 @@ import ReviewSection from '../component/ReviewSection'
 import VideoSection from '../component/VideoSection'
 
 const Landing = () => {
+
   const reviews = [{
     id: 1,
     reviewImage: "/images/review1.jpg",
