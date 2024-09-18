@@ -17,13 +17,13 @@ const SearchBar = () => {
 
   async function enterKey(e) {
     if(e.key == 'Enter') {
-      const res = await axios.post(`http://localhost:8000/search/courses?q=${e.target.value}`)
+      const res = await axios.post(`https://course-selling-website-q42x.onrender.com/search/courses?q=${e.target.value}`)
       searchBarRef.current.value = '';
       navigate('/courses', {state: res.data.response});
     }
   }
   async function searchSuggestions(e) {
-    const res = await axios.post(`http://localhost:8000/search/suggestions?q=${e.target.value}`)
+    const res = await axios.post(`https://course-selling-website-q42x.onrender.com/search/suggestions?q=${e.target.value}`)
     if(!e.target.value) {
       setCourses([]);
     } else {

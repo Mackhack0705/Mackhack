@@ -9,7 +9,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const instructorId = window.localStorage.getItem('userId');
     try {
-      axios.get(`http://localhost:8000/admin/courses?instructorId=${instructorId}`)
+      axios.get(`https://course-selling-website-q42x.onrender.com/admin/courses?instructorId=${instructorId}`)
       .then(async (res) => {
         const data = await res.data;
         setCourses(data.courses);

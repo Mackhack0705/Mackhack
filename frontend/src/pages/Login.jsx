@@ -12,7 +12,7 @@ const Login = () => {
 
   function SubmitLogin(data) {
     try {
-      axios.post('http://localhost:8000/user/signin', data)
+      axios.post('https://course-selling-website-q42x.onrender.com/user/signin', data)
       .then((res) => {
         if(res.data.token) {
           window.localStorage.setItem('token', res.data.token);

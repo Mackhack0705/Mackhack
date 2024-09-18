@@ -35,7 +35,7 @@ const AddCourse = () => {
         formData.append('imageFile', imageFile[0]);
         let response;
         try {
-            response = await axios.post('http://localhost:8000/admin/upload-image', formData, {
+            response = await axios.post('https://course-selling-website-q42x.onrender.com/admin/upload-image', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -54,7 +54,7 @@ const AddCourse = () => {
 
         let response;
         try {
-            response = await axios.post('http://localhost:8000/admin/upload-video', formData, {
+            response = await axios.post('https://course-selling-website-q42x.onrender.com/admin/upload-video', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -81,7 +81,7 @@ const AddCourse = () => {
             delete data.lessonTitle;
             delete data.duration;
             delete data.videoFile;
-            await axios.post('http://localhost:8000/admin/courses/add', data, {
+            await axios.post('https://course-selling-website-q42x.onrender.com/admin/courses/add', data, {
                 headers: {
                     'Authorization': `Bearer ${window.localStorage.getItem("token")}`
                 }

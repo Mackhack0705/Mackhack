@@ -6,7 +6,7 @@ const Teaching = () => {
   const navigate = useNavigate();
 
   function showInstructorDashboard() {
-    axios.put("http://localhost:8000/admin/teaching", {
+    axios.put("https://course-selling-website-q42x.onrender.com/admin/teaching", {
       _id: window.localStorage.getItem("userId"),
       isAdmin: true
     })

@@ -6,7 +6,7 @@ const Course = () => {
   const { courseId } = useParams();
   const [course, setCourse] = useState({});
   useEffect(() => {
-    axios.get(`http://localhost:8000/course/${courseId}`)
+    axios.get(`https://course-selling-website-q42x.onrender.com/course/${courseId}`)
     .then((res) => {
       setCourse(res.data.output);
     })

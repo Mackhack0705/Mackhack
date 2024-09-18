@@ -9,7 +9,7 @@ const SignUp = () => {
 
   function SubmitSignUp(data) {
     data.isAdmin = false;
-    axios.post("http://localhost:8000/user/signup", data)
+    axios.post("https://course-selling-website-q42x.onrender.com/user/signup", data)
       .then((res) => {
         alert(res.data.msg);
         window.localStorage.setItem("userId", res.data.userId);
