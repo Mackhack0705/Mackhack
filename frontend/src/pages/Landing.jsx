@@ -35,10 +35,10 @@ const Landing = () => {
       <BannerSection /> 
       <CategorySection />
       <div >
-        <div className='text-5xl text-center font-bold'>
+        <div className='text-3xl text-center font-bold md:text-4xl lg:text-5xl'>
           <h2>Brands</h2>
         </div> <br />
-        <div className='flex justify-around py-8 px-20'>
+        <div className='flex justify-around py-16 flex-wrap'>
           <Brand link={"/images/facebook.png"}/>
           <Brand link={"/images/microsoft.png"}/>
           <Brand link={"/images/apple.png"}/>

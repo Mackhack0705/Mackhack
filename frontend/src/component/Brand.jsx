@@ -17,9 +17,9 @@ const Brand = ({link}) => {
   }
 
   return (
-    <>
-      <img onMouseEnter={scaleUp} onMouseLeave={scaleDown} className="h-[200px] aspect-square object-contain " src={link} alt="" />
-    </>
+    <div className="flex justify-center h-[100px] w-[100px] xl:w-[280px] xl:h-[180px] 2xl:w-[300px] 2xl:h-[200px]">
+      <img onMouseEnter={scaleUp} onMouseLeave={scaleDown} className=" aspect-square object-contain " src={link} alt="" />
+    </div>
   )
 }
 
