@@ -17,7 +17,7 @@ const Brand = ({link}) => {
   }
 
   return (
-    <div className="flex justify-center h-[100px] w-[100px] xl:w-[280px] xl:h-[180px] 2xl:w-[300px] 2xl:h-[200px]">
+    <div className="flex justify-center h-[100px] w-[100px] md:w-[200px] md:h-[200px] lg:mt-5 lg:mx-4">
       <img onMouseEnter={scaleUp} onMouseLeave={scaleDown} className=" aspect-square object-contain " src={link} alt="" />
     </div>
   )

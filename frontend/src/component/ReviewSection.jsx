@@ -15,11 +15,11 @@ const ReviewSection = ({ review }) => {
   }
 
   return (
-    <div id={`review${review.id}`} onMouseEnter={scaleUp} onMouseLeave={scaleDown} className='border-[1px] border-gray-400 bg-white h-80 w-80 px-6 py-4 rounded-xl m-4'>
+    <div id={`review${review.id}`} onMouseEnter={scaleUp} onMouseLeave={scaleDown} className='border-[1px] border-gray-400 bg-white h-40 w-80 px-2 py-5 rounded-xl m-4 flex justify-between flex-wrap md:px-6 lg:w-52 lg:h-64 lg:justify-center lg:py-2'>
         <div className='flex flex-col items-center my-5'>
-            <img src={review.reviewImage} alt="" className='h-20 w-20 rounded-full object-contain'/> <span className='text-xl font-semibold'>{review.userName}</span>
+            <img src={review.reviewImage} alt="" className='h-14 w-14 rounded-full object-contain'/> <span className='text-sm font-semibold mt-2 md:mt-0'>{review.userName}</span>
         </div>
-        <div className="px-2 text-justify mb-8">
+        <div className="px-2 text-justify text-xs w-40 mb-8 md:py-2">
           <h3>{review.reviewText}</h3>
         </div>
     </div>

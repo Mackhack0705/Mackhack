@@ -31,8 +31,12 @@ const VideoSection = () => {
   gsap.registerPlugin(ScrollTrigger);
 
   useGSAP(() => {
-    gsap.to("#video-section", {
-      scale: 6,
+    gsap.fromTo("#video-section",
+      {
+        scale: 0.5
+      },
+      {
+      scale: 1.1,
       scrollTrigger: {
         trigger: "#target-section",
         scroller: "body",
@@ -45,10 +49,22 @@ const VideoSection = () => {
   })
 
   return (
-    <div id='target-section' className='h-[800px] flex justify-center items-center'>
-        <div id='video-section' className='w-64 h-40'>
+    <div id='target-section' className='h-[600px] mb-10 flex justify-center items-center'>
+        <div id='video-section' className='w-full h-full justify-center items-center hidden lg:flex'>
           <video ref={videoRef} width="600">
-            <source src="./videos/videoSection.mp4" type="video/mp4" />
+            <source src="./videos/videoSection1.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div id='video-section' className='w-full h-full flex justify-center items-center md:hidden'>
+          <video ref={videoRef} width="600" className='h-full'>
+            <source src="./videos/videoSection2.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div id='video-section' className='w-full h-full hidden justify-center items-center md:flex lg:hidden'>
+          <video ref={videoRef} width="600">
+            <source src="./videos/videoSection3.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>

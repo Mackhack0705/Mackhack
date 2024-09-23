@@ -35,10 +35,10 @@ const Landing = () => {
       <BannerSection /> 
       <CategorySection />
       <div >
-        <div className='text-3xl text-center font-bold md:text-4xl lg:text-5xl'>
+        <div className='text-3xl text-center font-bold md:text-5xl'>
           <h2>Brands</h2>
         </div> <br />
-        <div className='flex justify-around py-16 flex-wrap'>
+        <div className='flex justify-around py-5 flex-wrap'>
           <Brand link={"/images/facebook.png"}/>
           <Brand link={"/images/microsoft.png"}/>
           <Brand link={"/images/apple.png"}/>
@@ -48,8 +48,8 @@ const Landing = () => {
       </div>
       <VideoSection />
       <div>
-        <div className='text-center font-bold text-5xl'>Reviews</div>
-        <div className='flex justify-around py-8 px-20'>
+        <div className='text-center font-bold text-3xl lg:text-5xl'>Reviews</div>
+        <div className='flex flex-wrap justify-around py-8 px-2'>
           {
             reviews.map((review) => (
               <ReviewSection key={review.id} review={review}/>

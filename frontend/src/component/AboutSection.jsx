@@ -2,27 +2,31 @@ import { Link } from "react-router-dom"
 
 const AboutSection = () => {
   return (
-    <div className='bg-[#9ce2cf] h-[300px] flex justify-around py-10'>
-        <div id="logo" className="text-3xl font-bold">
-            M<span className="text-[#01c8b5]">a</span>ke
-            <span className="text-[#01c8b5]">hack</span>
+    <div className='bg-[#9ce2cf] h-[500px] flex flex-wrap justify-around py-10 md:h-80 lg:flex-nowrap lg:h-60 lg:px-4'>
+        <div className="flex flex-wrap flex-col gap-3 md:flex-row md:gap-10 lg:gap-1">
+            <div id="logo" className="text-3xl font-bold">
+                M<span className="text-[#01c8b5]">a</span>ke
+                <span className="text-[#01c8b5]">hack</span>
+            </div>
+            <input type="text" placeholder="Search" className="p-2 rounded-md md:h-10"/>
+            <button className="border-[1px] border-black px-4 py-2 rounded-md md:h-10">Subscribe</button>
         </div>
-        <div className="flex justify-around w-[800px]">
-            <div className="py-2 text-lg font-semibold">
+        <div className="flex flex-wrap items-center flex-col py-2 w-[800px] md:flex-row md:justify-center lg:flex-nowrap">
+            <div className="p-2 text-lg font-semibold w-52 md:ml-24">
                 <ul>
                     <li><Link to={"/teaching"}>Teach on Makehack</Link></li>
                     <li><Link to={"/aboutUs"}>About us</Link></li>
                     <li><Link to={"contactUs"}>Contact us</Link></li>
                 </ul>
             </div>
-            <div className="py-2 text-lg font-semibold">
+            <div className="p-2 text-lg font-semibold w-52">
                 <ul>
                     <li><Link to={"/teaching"}>Terms</Link></li>
                     <li><Link to={"/aboutUs"}>Privacy Policy</Link></li>
                     <li><Link to={"contactUs"}>Help & Support</Link></li>
                 </ul>
             </div>
-            <div className="py-2 text-lg font-semibold">
+            <div className="p-2 text-lg font-semibold w-52">
                 <ul>
                     <li><Link to={"/teaching"}>Careers</Link></li>
                     <li><Link to={"/aboutUs"}>Admin Dashboard</Link></li>
