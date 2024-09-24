@@ -4,26 +4,72 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useEffect, useRef } from 'react';
 
 const VideoSection = () => {
-  const videoRef = useRef();
+  const videoRef1 = useRef();
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          videoRef.current.play();
+          videoRef1.current.play();
         } else {
-          videoRef.current.pause(); // Pause the video if it leaves the viewport
+          videoRef1.current.pause(); // Pause the video if it leaves the viewport
         }
       },
       { threshold: 0.5 } // Adjust threshold to define visibility percentage
     );
 
-    if (videoRef.current) {
-      observer.observe(videoRef.current);
+    if (videoRef1.current) {
+      observer.observe(videoRef1.current);
     }
 
     return () => {
-      if (videoRef.current) {
-        observer.unobserve(videoRef.current);
+      if (videoRef1.current) {
+        observer.unobserve(videoRef1.current);
+      }
+    };
+  }, []);
+  const videoRef2 = useRef();
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          videoRef2.current.play();
+        } else {
+          videoRef2.current.pause(); // Pause the video if it leaves the viewport
+        }
+      },
+      { threshold: 0.5 } // Adjust threshold to define visibility percentage
+    );
+
+    if (videoRef2.current) {
+      observer.observe(videoRef2.current);
+    }
+
+    return () => {
+      if (videoRef2.current) {
+        observer.unobserve(videoRef2.current);
+      }
+    };
+  }, []);
+  const videoRef3 = useRef();
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          videoRef3.current.play();
+        } else {
+          videoRef3.current.pause(); // Pause the video if it leaves the viewport
+        }
+      },
+      { threshold: 0.5 } // Adjust threshold to define visibility percentage
+    );
+
+    if (videoRef3.current) {
+      observer.observe(videoRef3.current);
+    }
+
+    return () => {
+      if (videoRef3.current) {
+        observer.unobserve(videoRef3.current);
       }
     };
   }, []);
@@ -36,7 +82,7 @@ const VideoSection = () => {
         scale: 0.5
       },
       {
-      scale: 1.1,
+      scale: 1,
       scrollTrigger: {
         trigger: "#target-section",
         scroller: "body",
@@ -50,20 +96,20 @@ const VideoSection = () => {
 
   return (
     <div id='target-section' className='h-[600px] mb-10 flex justify-center items-center'>
-        <div id='video-section' className='w-full h-full justify-center items-center hidden lg:flex'>
-          <video ref={videoRef} width="600">
+        <div id='video-section' className='w-full h-full justify-center items-center hidden md:hidden lg:flex'>
+          <video ref={videoRef1} width="600">
             <source src="./videos/videoSection1.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
-        <div id='video-section' className='w-full h-full flex justify-center items-center md:hidden'>
-          <video ref={videoRef} width="600" className='h-full'>
+        <div id='video-section' className='w-full h-full flex justify-center items-center md:hidden lg:hidden'>
+          <video ref={videoRef2} width="600">
             <source src="./videos/videoSection2.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>
         <div id='video-section' className='w-full h-full hidden justify-center items-center md:flex lg:hidden'>
-          <video ref={videoRef} width="600">
+          <video ref={videoRef3} width="600">
             <source src="./videos/videoSection3.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
