@@ -96,8 +96,8 @@ const VideoSection = () => {
 
   return (
     <div id='target-section' className='h-[600px] mb-40 flex justify-center items-center'>
-        <div id='video-section' className='w-full h-full justify-center items-center pt-4 hidden md:hidden lg:flex'>
-          <video ref={videoRef1} width="600">
+        <div id='video-section' className='w-full h-full justify-center items-center hidden md:hidden lg:flex'>
+          <video ref={videoRef1} >
             <source src="./videos/videoSection1.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
@@ -108,7 +108,7 @@ const VideoSection = () => {
             Your browser does not support the video tag.
           </video>
         </div>
-        <div id='video-section' className='w-full h-full hidden justify-center items-center pt-4 md:flex lg:hidden'>
+        <div id='video-section' className='w-full h-full hidden justify-center items-center pt-60 md:flex lg:hidden'>
           <video ref={videoRef3} width="600">
             <source src="./videos/videoSection3.mp4" type="video/mp4" />
             Your browser does not support the video tag.

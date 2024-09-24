@@ -60,7 +60,7 @@ const LoginNavBar = () => {
       menuRef.current.classList.add('invisible');
     }
   return (
-    <div className="flex items-center justify-between relative text-lg font-bold py-6 px-4 bg-[#ebfffe]">
+    <div className="flex items-center justify-between relative text-lg font-bold py-6 px-4 bg-[#ebfffe] xl:px-20">
       <div id="logo" className="text-2xl md:text-3xl">
         M<span className="text-[#01c8b5]">a</span>ke
         <span className="text-[#01c8b5]">hack</span>
