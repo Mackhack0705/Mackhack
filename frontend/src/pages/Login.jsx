@@ -12,10 +12,8 @@ const Login = () => {
 
    function SubmitLogin(data) {
     try {
-      console.log(data);
       axios.post('https://course-selling-website-q42x.onrender.com/user/signin', data)
       .then(async (res) => {
-        console.log(res);
         if(res.data.token) {
           window.localStorage.setItem('token', res.data.token);
           try {
@@ -32,8 +30,6 @@ const Login = () => {
             }
           navigate("/");
         } else {
-          console.log('error');
-          setIsLoggedIn(true);
           alert(res.data.msg);
         }
       })
