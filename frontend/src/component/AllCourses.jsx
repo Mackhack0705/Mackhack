@@ -11,7 +11,7 @@ const AllCourses = () => {
     }, []);
 
   return (
-    <div className="flex h-[635px] justify-around p-8">
+    <div className="flex flex-wrap h-[635px] justify-around p-8">
       {
         courses.map((course) => {
             return (<div key={course._id} className="w-[300px] h-[300px] rounded-xl">
