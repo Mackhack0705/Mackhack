@@ -20,12 +20,12 @@ const Login = () => {
           window.localStorage.setItem('token', res.data.token);
           try {
             const userId = window.localStorage.getItem('userId') ? window.localStorage.getItem('userId') : res.data.userId;
-            const res = await axios.get(`https://course-selling-website-q42x.onrender.com/user?userId=${userId}`,{
+            const output = await axios.get(`https://course-selling-website-q42x.onrender.com/user?userId=${userId}`,{
                 headers: {
                   Authorization: `Bearer ${window.localStorage.getItem("token")}`,
                 },
               })
-            window.localStorage.setItem("user", JSON.stringify(res.data.user));
+            window.localStorage.setItem("user", JSON.stringify(output.data.user));
             setIsLoggedIn(false);
             } catch(err) {
               console.log(err);
