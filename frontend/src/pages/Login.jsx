@@ -12,24 +12,28 @@ const Login = () => {
 
    function SubmitLogin(data) {
     try {
+      console.log(data);
       axios.post('https://course-selling-website-q42x.onrender.com/user/signin', data)
       .then(async (res) => {
+        console.log(res);
         if(res.data.token) {
           window.localStorage.setItem('token', res.data.token);
           try {
-            const userId = window.localStorage.getItem('userId');
+            const userId = window.localStorage.getItem('userId') ? window.localStorage.getItem('userId') : res.data.userId;
             const res = await axios.get(`https://course-selling-website-q42x.onrender.com/user?userId=${userId}`,{
                 headers: {
                   Authorization: `Bearer ${window.localStorage.getItem("token")}`,
                 },
               })
             window.localStorage.setItem("user", JSON.stringify(res.data.user));
+            setIsLoggedIn(false);
             } catch(err) {
               console.log(err);
             }
-          setIsLoggedIn(false);
           navigate("/");
         } else {
+          console.log('error');
+          setIsLoggedIn(true);
           alert(res.data.msg);
         }
       })

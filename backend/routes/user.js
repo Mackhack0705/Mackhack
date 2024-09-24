@@ -32,17 +32,21 @@ router.post('/signup', signupMiddleware, async (req, res) => {
 router.post('/signin', async (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
+    console.log(username);
+    console.log(password);
     try {
         const user = await User.findOne({
             username,
             password
         });
+        console.log(user);
         if(user) {
             const token = jwt.sign({
                 username
             }, JWT_SECRET);
             res.json({
-                token
+                token,
+                userId: user._id
             })
         } else {
             res.json({
