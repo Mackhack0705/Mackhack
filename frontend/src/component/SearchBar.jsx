@@ -38,7 +38,7 @@ const SearchBar = () => {
   return (
     <div className="w-full relative">
       <input ref={searchBarRef} onInput={debounce} onKeyDown={enterKey} type="Search" placeholder='Search' className="w-[120px] h-[30px] text-base rounded-3xl placeholder-shown:focus:rounded-3xl border-2 border-gray-400 px-4 font-medium outline-none text-black peer focus-within:rounded-t-2xl focus-within:rounded-b-none hover:shadow-md md:w-[220px] md:h-[38px] md:text-lg"/>
-      <div className="absolute top-[5px] -right-10 md:top-[10px] md:-right-6 lg:right-10">
+      <div className="absolute top-[5px] -right-8 md:top-[10px] md:-right-6 lg:right-10">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-5 text-gray-500">
           <path strokeLinecap="round" strokeLinejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
         </svg>
