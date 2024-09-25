@@ -6,6 +6,8 @@ import Teaching from "./pages/Teaching";
 import AdminDashboard from "./pages/AdminDashboard";
 import NavBar from "./component/NavBar";
 import AddCourse from "./component/AddCourse";
+import AboutUs from "./pages/AboutUs";
+import Contact from "./pages/Contact";
 const Course = React.lazy(() => import("./component/Course"));
 const Login = React.lazy(() => import("./pages/Login"));
 const SignUp = React.lazy(() => import("./pages/SignUp"));
@@ -77,6 +79,22 @@ function App() {
           element={
             <React.Suspense fallback={"loading..."}>
               <AddCourse />
+            </React.Suspense>
+          }
+        />
+        <Route 
+          path="/aboutUs"
+          element={
+            <React.Suspense>
+              <AboutUs />
+            </React.Suspense>
+          }
+        />
+        <Route 
+          path="/contactUs"
+          element={
+            <React.Suspense>
+              <Contact />
             </React.Suspense>
           }
         />

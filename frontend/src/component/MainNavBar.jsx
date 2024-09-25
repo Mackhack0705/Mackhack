@@ -90,8 +90,8 @@ const MainNavBar = () => {
                     </svg>
                 </div>
                 <Link className="link" to={"/"}>Home</Link>
-                <Link className="link" to={"/"}>Contact us</Link>
-                <Link className="link" to={"/"}>About</Link>
+                <Link className="link" to={"/contactUs"}>Contact us</Link>
+                <Link className="link" to={"/aboutUs"}>About</Link>
                 <Profile />
             </div>
         </div>
