@@ -5,7 +5,8 @@ const inputSchema = zod.object({
     firstName: zod.string(),
     lastName: zod.string(),
     username: zod.string().email(),
-    password: zod.string().min(6)
+    password: zod.string().min(6),
+    provider: zod.string()
 })
 
 function inputValidation(req, res, next) {

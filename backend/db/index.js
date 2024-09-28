@@ -41,6 +41,7 @@ const userSchema = new mongoose.Schema({
     username: String,
     password: String,
     isAdmin: Boolean,
+    provider: String,
     purchasedCourses: [{
         type: mongoose.Schema.Types.ObjectId,
         ref:'course'

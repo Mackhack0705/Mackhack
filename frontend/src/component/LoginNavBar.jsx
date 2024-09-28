@@ -4,6 +4,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useEffect, useRef } from "react";
 
+
 const LoginNavBar = () => {
     const menuRef = useRef();
     const searchBarRef = useRef();
@@ -85,10 +86,11 @@ const LoginNavBar = () => {
             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
           </svg>
         </div>
-        <button className="btn text-sm text-[#0a2e31] mr-3 hover:shadow-lg md:text-lg" onClick={() => { 
-          navigate("/login"); 
-          closeMenu();
-          }}>
+        <button className="btn text-sm text-[#0a2e31] mr-3 hover:shadow-lg md:text-lg" onClick={() => {
+            navigate("/login");
+            closeMenu();
+          }
+          }>
           Login
         </button>
         <button className="btn border-[1.5px] border-[#0a2e31] px-3 py-1 rounded-3xl text-sm bg-[#01c8b5] text-[#0a2e31] hover:shadow-xl md:text-lg" onClick={() => {

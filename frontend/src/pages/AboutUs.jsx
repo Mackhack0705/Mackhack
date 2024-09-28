@@ -57,7 +57,7 @@ const AboutUs = () => {
         <div className='flex justify-center py-10'>
             <div className='w-[40%] text-lg text-justify pr-8 py-14 font-medium'>
                 <p>
-                    We offer a platform where aspiring professionals can  learn from industry experts, master in-demand skills, and stay ahead of the latest technological trends. Whether you're looking to start a new career or enhance your existing skill set, we are here to support your learning journey with engaging content and practical insights.
+                    We offer a platform where aspiring professionals can  learn from industry experts, master in-demand skills, and stay ahead of the latest technological trends. Whether you&apos;re looking to start a new career or enhance your existing skill set, we are here to support your learning journey with engaging content and practical insights.
                 </p>
             </div>
             <div className='w-[20%] rounded-lg'>

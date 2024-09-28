@@ -8,6 +8,7 @@ import NavBar from "./component/NavBar";
 import AddCourse from "./component/AddCourse";
 import AboutUs from "./pages/AboutUs";
 import Contact from "./pages/Contact";
+import LoginFailed from "./pages/LoginFailed";
 const Course = React.lazy(() => import("./component/Course"));
 const Login = React.lazy(() => import("./pages/Login"));
 const SignUp = React.lazy(() => import("./pages/SignUp"));
@@ -95,6 +96,14 @@ function App() {
           element={
             <React.Suspense>
               <Contact />
+            </React.Suspense>
+          }
+        />
+        <Route 
+          path="/loginFailed"
+          element={
+            <React.Suspense>
+              <LoginFailed />
             </React.Suspense>
           }
         />

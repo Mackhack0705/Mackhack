@@ -3,12 +3,41 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from 'react-hook-form';
 import { useSetRecoilState } from "recoil";
 import { loggedInAtom } from "../store/atoms/loggedIn";
+import { auth, googleProvider} from '../firebase';
+import { signInWithPopup } from 'firebase/auth';
 
 const Login = () => {
   const setIsLoggedIn = useSetRecoilState(loggedInAtom);
   const {register, handleSubmit, formState: {errors}} = useForm();
 
   const navigate = useNavigate();
+
+  async function handleGoogleLogin() {
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      const token = result.user.accessToken;
+      const provider = result.providerId.split(".")[0];
+      console.log(result.user);
+      const userName = result.user.displayName.split(" ");
+      const data = {
+        firstName: userName[0],
+        lastName: userName[1],
+        email: result.user.email,
+        password: '',
+        provider: provider,
+        isAdmin: false
+      }
+      axios.post("https://course-selling-website-q42x.onrender.com/user/signup", data)
+      .then((res) => {
+        window.localStorage.setItem("userId", res.data.userId);
+      });
+      window.localStorage.setItem('token', token);
+      navigate("/");
+    } catch(err) {
+      console.log(err);
+    }
+  }
+
 
    function SubmitLogin(data) {
     try {
@@ -47,6 +76,7 @@ const Login = () => {
             <div className="absolute top-[358px] px-2 text-xs text-left text-red-500">{errors.username?.message}</div>
             <input {...register("password", {required: "* Field is empty"})} className="rounded-3xl px-4 py-1 text-xl w-56 font-normal outline-none text-gray-500 border-2 border-gray-400 md:w-64 lg:w-72" type="password" placeholder="password"/>
             <div className="absolute top-[430px] px-2 text-xs text-left text-red-500">{errors.password?.message}</div>
+            <button onClick={handleGoogleLogin} className="bg-white w-40 font-medium text-lg rounded-lg">Sign with Google</button>
             <button onClick={handleSubmit(SubmitLogin)} className="bg-[#01c8b5] text-[#0a2e31] w-[90px] rounded-3xl px-4 py-1 my-2 mx-auto text-lg hover:scale-110 border-[#0a2e31] border-2">Log In</button>
         </div>
       </div>

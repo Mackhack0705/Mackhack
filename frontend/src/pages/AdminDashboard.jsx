@@ -30,11 +30,11 @@ const AdminDashboard = () => {
       <div className="px-60">
         {
           courses.map((course) => (
-            <div key={course._id} className="grid grid-cols-2 bg-white p-4">
-              <div className=" border-2 col-span-2 col- border-black">
+            <div key={course._id} className="flex flex-row gap-8 bg-white p-4">
+              <div className="w-60">
                 <img src={course.imageFile.path} alt="" />
               </div>
-              <div className="col-span-10">
+              <div>
                 <h2 className="text-3xl font-semibold">{course.title}</h2>
                 <p>{course.description}</p>
                 <p className="text-xl">Rs. {course.price} /-</p>
