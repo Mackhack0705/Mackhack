@@ -11,7 +11,9 @@ const inputSchema = zod.object({
 
 function inputValidation(req, res, next) {
     const body = req.body;
+    console.log(body);
     const response = inputSchema.safeParse(body);
+    console.log(response);
     if(!response.success) {
         return res.status(411).json({
             msg: "Incorrect type of input"
