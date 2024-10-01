@@ -9,27 +9,27 @@ const AboutUs = () => {
         },
         {
             id: 2,
-            name: "Emily Carter",
+            name: "Rohan Mehta",
             image: "/images/instructor2.png"
         },
         {
             id: 3,
-            name: "Emily Carter",
+            name: "Sophia Turner",
             image: "/images/instructor3.png"
         },
         {
             id: 4,
-            name: "Emily Carter",
+            name: "Aarav Sharma",
             image: "/images/instructor4.png"
         },
         {
             id: 5,
-            name: "Emily Carter",
+            name: "Olivia Brown",
             image: "/images/instructor5.png"
         },
         {
             id: 6,
-            name: "Emily Carter",
+            name: "Isabella Martinez",
             image: "/images/instructor6.png"
         }
     ]);
@@ -43,31 +43,31 @@ const AboutUs = () => {
     }
   return (
     <div className='px-4 py-10 text-center'>
-        <div className='text-5xl font-bold'>About Us</div>
-        <div className='flex justify-center py-10'>
-            <div className='w-[20%] rounded-lg'>
+        <div className='text-3xl font-bold md:text-4xl'>About Us</div>
+        <div className='flex flex-wrap py-10 xl:px-40'>
+            <div className='w-full rounded-lg md:w-[40%] lg:w-[30%]'>
                 <img src="/images/aboutImage1.jpeg" alt=""  className='rounded-lg'/>
             </div>
-            <div className='w-[40%] text-lg text-justify pl-8 py-14 font-medium'>
+            <div className='w-full text-lg text-justify py-14 font-medium md:w-[60%] md:px-4 lg:w-[70%] xl:pl-10'>
                 <p>
                     At Makehack, we are committed to empowering learners by providing top-quality,  expertly crafted courses across a variety of fields, including full-stack    development, web3, and machine learning. Our mission is to make cutting-edge   education accessible to everyone, helping individuals unlock their potential and  achieve their career goals.
                 </p>
             </div>
         </div>
-        <div className='flex justify-center py-10'>
-            <div className='w-[40%] text-lg text-justify pr-8 py-14 font-medium'>
+        <div className='flex flex-wrap justify-center py-10 xl:px-40'>
+            <div className='w-full text-lg text-justify order-2 py-14 font-medium md:w-[60%] md:px-4 md:order-1 lg:w-[70%] xl:pr-10'>
                 <p>
                     We offer a platform where aspiring professionals can  learn from industry experts, master in-demand skills, and stay ahead of the latest technological trends. Whether you&apos;re looking to start a new career or enhance your existing skill set, we are here to support your learning journey with engaging content and practical insights.
                 </p>
             </div>
-            <div className='w-[20%] rounded-lg'>
+            <div className='w-full rounded-lg md:w-[40%] md:order-2 lg:w-[30%]'>
                 <img src="/images/aboutImage2.jpeg" alt=""  className='rounded-lg'/>
             </div>
         </div>
-        <div className='text-3xl font-bold'>
+        <div className='text-2xl font-bold md:text-3xl'>
             <p>Our Top Eductators</p>
         </div>
-        <div className='flex py-10'>
+        <div className='flex overflow-hidden py-10'>
             {
                 instructorArray.map((instructor) => {
                     return (
