@@ -65,7 +65,7 @@ const AboutUs = () => {
             </div>
         </div>
         <div className='text-2xl font-bold md:text-3xl'>
-            <p>Our Top Eductators</p>
+            <p>Our Top Educators</p>
         </div>
         <div className='flex overflow-hidden py-10'>
             {
