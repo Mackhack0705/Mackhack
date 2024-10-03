@@ -5,6 +5,7 @@ const adminRoute = require('./routes/admin');
 const userRoute = require('./routes/user');
 const searchRoute = require('./routes/search');
 const courseRoute = require('./routes/course');
+const emailRoute = require('./routes/email');
 const dotenv = require('dotenv').config();
 const cors = require('cors');
 
@@ -14,6 +15,7 @@ app.use('/admin', adminRoute);
 app.use('/user', userRoute);
 app.use('/search', searchRoute);
 app.use('/course', courseRoute);
+app.use('/email', emailRoute);
 
 const port = process.env.PORT || 8080 || 3000;
 

@@ -41,11 +41,18 @@ const SignUp = () => {
 
   function SubmitSignUp(data) {
     data.isAdmin = false;
+    data.provider = "";
     axios.post("https://course-selling-website-q42x.onrender.com/user/signup", data)
       .then((res) => {
         alert(res.data.msg);
         window.localStorage.setItem("userId", res.data.userId);
       });
+    axios.post("https://localhost:8000/email/welcome", {
+      email: "metiw32102@exweme.com"
+    }) 
+    .then((res) => {
+      console.log(res);
+    })
     navigate("/");
   }
 
