@@ -20,24 +20,24 @@ const AdminDashboard = () => {
     }
   }, []);
   return (
-    <div className="h-[640px] py-24">
-      <div className=" h-32 flex justify-around items-center">
-        <h1 className="text-5xl font-bold">A<span className="text-[#01c8b5]">d</span>min D<span className="text-[#01c8b5]">a</span>sh<span className="text-[#01c8b5]">board</span></h1>
+    <div className="flex flex-wrap justify-center">
+      <div className="flex flex-wrap w-full justify-center gap-2 text-center items-center md:justify-around">
+        <h1 className="text-3xl font-bold md:text-4xl lg:text-5xl">A<span className="text-[#01c8b5]">d</span>min D<span className="text-[#01c8b5]">a</span>sh<span className="text-[#01c8b5]">board</span></h1>
         <button onClick={() => {
           navigate("/admin/addCourse");
-        }} className="bg-[#01c8b5] text-lg font-semibold p-4 rounded-xl">Create Course</button>
+        }} className="bg-[#01c8b5] text-sm font-semibold p-2 rounded-xl md:text-base lg:text-lg">Create Course</button>
       </div>
-      <div className="px-60">
+      <div className="my-4">
         {
           courses.map((course) => (
-            <div key={course._id} className="flex flex-row gap-8 bg-white p-4">
-              <div className="w-60">
-                <img src={course.imageFile.path} alt="" />
+            <div key={course._id} className="flex flex-wrap gap-4 justify-center bg-white p-4 md:flex-nowrap">
+              <div className="w-64">
+                <img src={course.imageFile.path} alt="" className="h-full"/>
               </div>
-              <div>
-                <h2 className="text-3xl font-semibold">{course.title}</h2>
-                <p>{course.description}</p>
-                <p className="text-xl">Rs. {course.price} /-</p>
+              <div className="px-4">
+                <h2 className="text-xl font-semibold md:text-2xl lg:text-3xl">{course.title}</h2>
+                <p className="text-xs md:text-sm lg:text-base">{course.description}</p>
+                <p className="text-lg md:text-xl lg:text-2xl">Rs. {course.price} /-</p>
               </div>
             </div>
           ))

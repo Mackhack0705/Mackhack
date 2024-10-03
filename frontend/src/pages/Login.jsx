@@ -47,6 +47,7 @@ const Login = () => {
       .then(async (res) => {
         if(res.data.token) {
           window.localStorage.setItem('token', res.data.token);
+          window.localStorage.setItem('userId', res.data.userId);
           try {
             const userId = window.localStorage.getItem('userId') ? window.localStorage.getItem('userId') : res.data.userId;
             const output = await axios.get(`https://course-selling-website-q42x.onrender.com/user?userId=${userId}`,{
