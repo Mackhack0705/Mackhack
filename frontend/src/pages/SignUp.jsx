@@ -47,9 +47,8 @@ const SignUp = () => {
         alert(res.data.msg);
         window.localStorage.setItem("userId", res.data.userId);
       });
-    axios.post("https://localhost:8000/email/welcome", {
-      email: "metiw32102@exweme.com"
-    }) 
+    const email = data.username;
+    axios.post("https://course-selling-website-q42x.onrender.com/email/welcome", email) 
     .then((res) => {
       console.log(res);
     })

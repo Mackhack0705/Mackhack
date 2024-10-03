@@ -2,7 +2,7 @@ const { Router } = require('express');
 const { Resend } = require('resend');
 
 const router = Router();
-const resend = new Resend("re_123456789");
+const resend = new Resend("re_ii5ZEfCM_HJftVVDbSqrTkBzKQdUKVHot");
 
 router.post("/welcome", async (req, res) => {
     const customerData = req.body; 
