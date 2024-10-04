@@ -11,7 +11,7 @@ router.post("/welcome", async (req, res) => {
     const customerData = req.body; 
     console.log(customerData);
     const emailFormat = {
-        from: "Education@re.resend.com",
+        from: "mackhack0705@gmail.com",
         to: [customerData.email],
         subject: "Welcome to Mackhack",
         html: "<strong>Welcome to the Mackhack Best education platform</strong>",
