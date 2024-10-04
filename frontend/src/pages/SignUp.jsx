@@ -47,8 +47,10 @@ const SignUp = () => {
         alert(res.data.msg);
         window.localStorage.setItem("userId", res.data.userId);
       });
-    const email = data.username;
-    axios.post("https://course-selling-website-q42x.onrender.com/email/welcome", email) 
+    const customerData = {
+      email: data.username
+    }
+    axios.post("https://course-selling-website-q42x.onrender.com/email/welcome", customerData) 
     .then((res) => {
       console.log(res);
     })

@@ -5,11 +5,11 @@ const router = Router();
 const resend = new Resend("re_ii5ZEfCM_HJftVVDbSqrTkBzKQdUKVHot");
 
 router.post("/welcome", async (req, res) => {
-    const customerData = req.body.email; 
+    const customerData = req.body; 
     console.log(customerData);
     const emailFormat = {
         from: "mackhack0705@gmail.com",
-        to: [customerData],
+        to: [customerData.email],
         subject: "Welcome to Mackhack",
         text: "Welcome to the Mackhack Best education platform",
     }
