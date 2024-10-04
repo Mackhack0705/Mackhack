@@ -9,7 +9,11 @@ const emailRoute = require('./routes/email');
 const dotenv = require('dotenv').config();
 const cors = require('cors');
 
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:5173',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true
+}));
 app.use(bodyParser.json());
 app.use('/admin', adminRoute);
 app.use('/user', userRoute);
