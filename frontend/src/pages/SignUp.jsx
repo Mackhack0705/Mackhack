@@ -5,6 +5,7 @@ import { auth, googleProvider} from '../firebase';
 import { signInWithPopup } from 'firebase/auth';
 import { useSetRecoilState } from "recoil";
 import { loggedInAtom } from "../store/atoms/loggedIn";
+import emailjs from '@emailjs/browser';
 
 const SignUp = () => {
   const setIsLoggedIn = useSetRecoilState(loggedInAtom);
@@ -46,16 +47,17 @@ const SignUp = () => {
       .then((res) => {
         alert(res.data.msg);
         window.localStorage.setItem("userId", res.data.userId);
-        const customerData = {
-          email: data.username
-        }
-        axios.post("https://course-selling-website-q42x.onrender.com/email/welcome", customerData, {
-          headers: {
-                    'Content-Type': 'application/json',
-          },
-        }) 
+        emailjs.send('service_4lelmpn', 'template_eaqw9rn', {
+          to_name: `${data.firstName} ${data.lastName}`,
+          to_email: data.username
+        }, {
+          publicKey: "6JCiwt_gIllNHCkuB"
+        })
         .then((res) => {
           console.log(res);
+        })
+        .catch((error) => {
+          console.log(error);
         })
       });
     navigate("/");

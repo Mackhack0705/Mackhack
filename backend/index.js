@@ -15,7 +15,6 @@ app.use('/admin', adminRoute);
 app.use('/user', userRoute);
 app.use('/search', searchRoute);
 app.use('/course', courseRoute);
-app.use('/email', emailRoute);
 
 const port = process.env.PORT || 8080 || 3000;
 
