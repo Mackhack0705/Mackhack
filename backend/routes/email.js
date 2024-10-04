@@ -11,7 +11,7 @@ router.post("/welcome", async (req, res) => {
         from: "mackhack0705@gmail.com",
         to: [customerData.email],
         subject: "Welcome to Mackhack",
-        text: "Welcome to the Mackhack Best education platform",
+        html: "<strong>Welcome to the Mackhack Best education platform</strong>",
     }
     console.log(emailFormat);
     const { data, error } = await resend.emails.send()
