@@ -5,14 +5,16 @@ const router = Router();
 const resend = new Resend("re_ii5ZEfCM_HJftVVDbSqrTkBzKQdUKVHot");
 
 router.post("/welcome", async (req, res) => {
-    const customerData = req.body; 
+    const customerData = req.body.email; 
     console.log(customerData);
-    const { data, error } = await resend.emails.send({
+    const emailFormat = {
         from: "mackhack0705@gmail.com",
-        to: customerData.email,
+        to: [customerData],
         subject: "Welcome to Mackhack",
         text: "Welcome to the Mackhack Best education platform",
-    })
+    }
+    console.log(emailFormat);
+    const { data, error } = await resend.emails.send()
 
     if (error) {
         return res.status(400).json({ error });
