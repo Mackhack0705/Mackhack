@@ -49,7 +49,11 @@ const SignUp = () => {
         const customerData = {
           email: data.username
         }
-        axios.post("https://course-selling-website-q42x.onrender.com/email/welcome", customerData) 
+        axios.post("https://course-selling-website-q42x.onrender.com/email/welcome", customerData, {
+          headers: {
+                    'Content-Type': 'application/json',
+          },
+        }) 
         .then((res) => {
           console.log(res);
         })

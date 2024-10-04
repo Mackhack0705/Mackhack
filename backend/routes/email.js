@@ -5,6 +5,9 @@ const router = Router();
 const resend = new Resend("re_ii5ZEfCM_HJftVVDbSqrTkBzKQdUKVHot");
 
 router.post("/welcome", async (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
+    res.setHeader('Access-Control-Allow-Methods', 'POST');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     const customerData = req.body; 
     console.log(customerData);
     const emailFormat = {
@@ -14,7 +17,7 @@ router.post("/welcome", async (req, res) => {
         html: "<strong>Welcome to the Mackhack Best education platform</strong>",
     }
     console.log(emailFormat);
-    const { data, error } = await resend.emails.send()
+    const { data, error } = await resend.emails.send(emailFormat);
 
     if (error) {
         return res.status(400).json({ error });
