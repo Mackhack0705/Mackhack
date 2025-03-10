@@ -1,14 +1,15 @@
-import MainNavBar from "./MainNavBar";
-import LoginNavBar from "./LoginNavBar";
-import { useRecoilValue } from "recoil";
-import { loggedInAtom } from "../store/atoms/loggedIn";
+import MainNavBar from "./MainNavBar.js";
+import LoginNavBar from "./LoginNavBar.js";
+// import { useRecoilValue } from "recoil";
+// import { loggedInAtom } from "../store/atoms/loggedIn";
 
 const NavBar = () => {
-  const isLoggedIn = useRecoilValue(loggedInAtom);
+  // const isLoggedIn = useRecoilValue(loggedInAtom);
 
   return (
     <nav>
-      {isLoggedIn ? <LoginNavBar/> : <MainNavBar />}
+      {/* {isLoggedIn ? <LoginNavBar/> : <MainNavBar />} */}
+      <LoginNavBar/>
     </nav>
   );
 };

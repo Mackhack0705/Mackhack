@@ -1,20 +1,20 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import AllCourses from "./components/AllCourses";
-import Teaching from "./pages/Teaching";
-import AdminDashboard from "./pages/AdminDashboard";
-import NavBar from "./components/NavBar";
-import AddCourse from "./components/AddCourse";
-import AboutUs from "./pages/AboutUs";
-import Contact from "./pages/Contact";
-import LoginFailed from "./pages/LoginFailed";
-const Course = React.lazy(() => import("./components/Course"));
-const Login = React.lazy(() => import("./pages/Login"));
-const SignUp = React.lazy(() => import("./pages/SignUp"));
-const Landing = React.lazy(() => import("./pages/Landing"));
-import { Toaster } from "@/components/ui/toaster";
-import Loader from "./components/Loader";
+import AllCourses from "@/components/AllCourses.js";
+import Teaching from "@/pages/Teaching.js";
+import AdminDashboard from "@/pages/AdminDashboard.js";
+import NavBar from "@/components/NavBar.js";
+// import AddCourse from "@/components/AddCourse.js";
+import AboutUs from "@/pages/AboutUs.js";
+import Contact from "@/pages/Contact.js";
+import LoginFailed from "@/pages/LoginFailed.js";
+const Course = React.lazy(() => import("@/components/Course.js"));
+const Login = React.lazy(() => import("@/pages/Login.js"));
+const SignUp = React.lazy(() => import("@/pages/SignUp.js"));
+const Landing = React.lazy(() => import("@/pages/Landing.js"));
+import Loader from "@/components/Loader.js";
+import { Toaster } from "sonner";
 
 function App() {
   return (
@@ -77,14 +77,14 @@ function App() {
             </React.Suspense>
           }
         />
-        <Route
+        {/* <Route
           path="/admin/addCourse"
           element={
             <React.Suspense fallback={<Loader />}>
               <AddCourse />
             </React.Suspense>
           }
-        />
+        /> */}
         <Route 
           path="/aboutUs"
           element={
