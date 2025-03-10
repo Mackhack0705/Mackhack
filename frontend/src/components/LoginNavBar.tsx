@@ -27,7 +27,7 @@ const LoginNavBar = () => {
   return (
     <div className="flex items-center justify-between relative text-lg font-bold py-6 px-4 xl:px-20">
       <Link
-        className="navItems text-2xl md:text-3xl bg-gradient-to-t from-gray-500 to-white bg-clip-text text-transparent"
+        className="navItems text-2xl md:text-3xl bg-linear-to-t from-gray-500 to-white bg-clip-text text-transparent"
         to={"/"}
       >
         Mackhack
@@ -72,7 +72,7 @@ const LoginNavBar = () => {
         <Link to={"/sign-in"}>
           <Button
             variant="default"
-            className="navItems font-bold bg-gradient-to-t from-gray-500 to-white"
+            className="navItems font-bold bg-linear-to-t from-gray-500 to-white"
           >
             Login
           </Button>
@@ -80,7 +80,7 @@ const LoginNavBar = () => {
         <Link to={"/sign-up"}>
           <Button
             variant="default"
-            className="navItems font-bold bg-gradient-to-t from-gray-500 to-white"
+            className="navItems font-bold bg-linear-to-t from-gray-500 to-white"
           >
             SignUp
           </Button>

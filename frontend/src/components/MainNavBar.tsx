@@ -24,14 +24,14 @@ const MainNavBar = () => {
     return (
         <div className="relative">
             <div className="flex items-center justify-between text-lg font-bold py-6 px-4 xl:px-20">
-                <Link id="logo" className="text-2xl md:text-3xl bg-gradient-to-t from-gray-500 to-white bg-clip-text text-transparent" to={"/"}>
+                <Link id="logo" className="text-2xl md:text-3xl bg-linear-to-t from-gray-500 to-white bg-clip-text text-transparent" to={"/"}>
                    Mackhack
                 </Link>
                 <div id="menu" className="flex gap-8 text-xl max-sm:hidden">
-                    <Link className="link bg-gradient-to-t from-gray-500 to-white bg-clip-text text-transparent" to={"/"}>Home</Link>
-                    <Link className="link bg-gradient-to-t from-gray-500 to-white bg-clip-text text-transparent" to={"/courses"}>Courses</Link>
-                    <Link className="link bg-gradient-to-t from-gray-500 to-white bg-clip-text text-transparent" to={"/contactUs"}>Contact us</Link>
-                    <Link className="link bg-gradient-to-t from-gray-500 to-white bg-clip-text text-transparent" to={"/aboutUs"}>About</Link>
+                    <Link className="link bg-linear-to-t from-gray-500 to-white bg-clip-text text-transparent" to={"/"}>Home</Link>
+                    <Link className="link bg-linear-to-t from-gray-500 to-white bg-clip-text text-transparent" to={"/courses"}>Courses</Link>
+                    <Link className="link bg-linear-to-t from-gray-500 to-white bg-clip-text text-transparent" to={"/contactUs"}>Contact us</Link>
+                    <Link className="link bg-linear-to-t from-gray-500 to-white bg-clip-text text-transparent" to={"/aboutUs"}>About</Link>
                 </div>
                 <div className="flex gap-2 items-center">
                   <div className="cursor-pointer">

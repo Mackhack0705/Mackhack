@@ -82,7 +82,7 @@ const Login = () => {
     <div className="grow flex justify-center px-4 py-40">
       <Card className="w-full max-w-md dark">
         <CardHeader>
-          <CardTitle className="text-3xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-t from-gray-800 to-white">Sign in</CardTitle>
+          <CardTitle className="text-3xl font-bold text-center text-transparent bg-clip-text bg-linear-to-t from-gray-800 to-white">Sign in</CardTitle>
         </CardHeader>
         <CardContent>
           <Form {...form}>

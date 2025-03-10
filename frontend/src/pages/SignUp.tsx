@@ -68,7 +68,7 @@ export default function SignUp() {
         <div className='grow flex justify-center items-center p-4'>
             <Card className='w-full max-w-md'>
                 <CardHeader>
-                    <CardTitle className="text-3xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-t from-gray-800 to-white">Create Account</CardTitle>
+                    <CardTitle className="text-3xl font-bold text-center text-transparent bg-clip-text bg-linear-to-t from-gray-800 to-white">Create Account</CardTitle>
                 </CardHeader>
                 <CardContent>
                     <Form {...form}>
