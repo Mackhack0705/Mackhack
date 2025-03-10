@@ -1,5 +1,6 @@
-const { Router } = require('express');
-const { Course } = require('../db');
+import { Router } from 'express';
+import prisma from '../db/index';
+// import { Course } from '../db';
 
 
 const router = Router();
@@ -7,8 +8,10 @@ const router = Router();
 router.get('/:courseId', async (req, res) => {
     const courseId = req.params.courseId;
     try {
-        const output = await Course.findOne({
-            _id: courseId
+        const output = await prisma.course.findFirst({
+            where: {
+                id: courseId
+            }
         });
         res.json({
             output
@@ -20,4 +23,4 @@ router.get('/:courseId', async (req, res) => {
     }
 })
 
-module.exports = router;
+export default router;

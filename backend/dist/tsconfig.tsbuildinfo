@@ -1,0 +1,1 @@
+{"root":["../auth.ts","../config.ts","../index.ts","../actions/email.ts","../db/index.ts","../middlewares/coursevalidation.ts","../middlewares/signupvalidation.ts","../middlewares/user.ts","../routes/admin.ts","../routes/course.ts","../routes/search.ts","../routes/user.ts"],"errors":true,"version":"5.7.3"}

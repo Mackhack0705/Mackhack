@@ -1,4 +1,6 @@
-const zod = require('zod');
+import { NextFunction, Request, Response } from "express";
+
+import zod from 'zod';
 
 const courseSchema = zod.object({
     title: zod.string(),
@@ -7,7 +9,7 @@ const courseSchema = zod.object({
     imageLink: zod.string()
 })
 
-function courseValidation(req, res, next) {
+export default function courseValidation(req: Request, res: Response, next: NextFunction) {
     const body = req.body;
     const response = courseSchema.safeParse(body);
     if(!response.success) {
@@ -17,5 +19,3 @@ function courseValidation(req, res, next) {
     }
     next();
 }
-
-module.exports = courseValidation;

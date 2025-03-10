@@ -1,5 +1,6 @@
 // inputValidation for handling input validation
-const zod = require('zod');
+import { NextFunction, Request, Response } from 'express';
+import zod from 'zod';
 
 const inputSchema = zod.object({
     firstName: zod.string(),
@@ -10,7 +11,7 @@ const inputSchema = zod.object({
     isAdmin: zod.boolean()
 })
 
-function inputValidation(req, res, next) {
+export default function inputValidation(req: Request, res: Response, next: NextFunction) {
     const body = req.body;
     console.log(body);
     const response = inputSchema.safeParse(body);
@@ -22,5 +23,3 @@ function inputValidation(req, res, next) {
     }
     next();
 }
-
-module.exports = inputValidation;
