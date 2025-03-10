@@ -1,18 +1,20 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import AllCourses from "./component/AllCourses";
+import AllCourses from "./components/AllCourses";
 import Teaching from "./pages/Teaching";
 import AdminDashboard from "./pages/AdminDashboard";
-import NavBar from "./component/NavBar";
-import AddCourse from "./component/AddCourse";
+import NavBar from "./components/NavBar";
+import AddCourse from "./components/AddCourse";
 import AboutUs from "./pages/AboutUs";
 import Contact from "./pages/Contact";
 import LoginFailed from "./pages/LoginFailed";
-const Course = React.lazy(() => import("./component/Course"));
+const Course = React.lazy(() => import("./components/Course"));
 const Login = React.lazy(() => import("./pages/Login"));
 const SignUp = React.lazy(() => import("./pages/SignUp"));
 const Landing = React.lazy(() => import("./pages/Landing"));
+import { Toaster } from "@/components/ui/toaster";
+import Loader from "./components/Loader";
 
 function App() {
   return (
@@ -22,23 +24,23 @@ function App() {
         <Route
           path="/"
           element={
-            <React.Suspense fallback={"loading..."}>
+            <React.Suspense fallback={<Loader />}>
               <Landing />
             </React.Suspense>
           }
         />
         <Route
-          path="/login"
+          path="/sign-in"
           element={
-            <React.Suspense fallback={"loading..."}>
+            <React.Suspense fallback={<Loader />}>
               <Login />
             </React.Suspense>
           }
         />
         <Route
-          path="/signup"
+          path="/sign-up"
           element={
-            <React.Suspense fallback={"loading..."}>
+            <React.Suspense fallback={<Loader />}>
               <SignUp />
             </React.Suspense>
           }
@@ -46,7 +48,7 @@ function App() {
         <Route
           path="/courses"
           element={
-            <React.Suspense fallback={"loading..."}>
+            <React.Suspense fallback={<Loader />}>
               <AllCourses />
             </React.Suspense>
           }
@@ -54,7 +56,7 @@ function App() {
         <Route
           path="/course/:courseId"
           element={
-            <React.Suspense fallback={"loading..."}>
+            <React.Suspense fallback={<Loader />}>
               <Course />
             </React.Suspense>
           }
@@ -62,7 +64,7 @@ function App() {
         <Route
           path="/teaching"
           element={
-            <React.Suspense fallback={"loading..."}>
+            <React.Suspense fallback={<Loader />}>
               <Teaching />
             </React.Suspense>
           }
@@ -70,7 +72,7 @@ function App() {
         <Route
           path="/admin/dashboard"
           element={
-            <React.Suspense fallback={"loading..."}>
+            <React.Suspense fallback={<Loader />}>
               <AdminDashboard />
             </React.Suspense>
           }
@@ -78,7 +80,7 @@ function App() {
         <Route
           path="/admin/addCourse"
           element={
-            <React.Suspense fallback={"loading..."}>
+            <React.Suspense fallback={<Loader />}>
               <AddCourse />
             </React.Suspense>
           }
@@ -108,6 +110,7 @@ function App() {
           }
         />
       </Routes>
+      <Toaster />
     </BrowserRouter>
   );
 }

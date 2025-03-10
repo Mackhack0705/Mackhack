@@ -7,9 +7,9 @@ const NavBar = () => {
   const isLoggedIn = useRecoilValue(loggedInAtom);
 
   return (
-    <div>
+    <nav>
       {isLoggedIn ? <LoginNavBar/> : <MainNavBar />}
-    </div>
+    </nav>
   );
 };
 

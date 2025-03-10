@@ -1,9 +1,9 @@
-import AboutSection from '../component/AboutSection'
-import BannerSection from '../component/BannerSection'
-import Brand from '../component/Brand'
-import CategorySection from '../component/CategorySection'
-import ReviewSection from '../component/ReviewSection'
-import VideoSection from '../component/VideoSection'
+import AboutSection from '../components/AboutSection'
+import BannerSection from '../components/BannerSection'
+import Brand from '../components/Brand'
+import CategorySection from '../components/CategorySection'
+import ReviewSection from '../components/ReviewSection'
+import VideoSection from '../components/VideoSection'
 
 const Landing = () => {
 
@@ -31,7 +31,7 @@ const Landing = () => {
 
 
   return (
-    <div className='h-full w-full'>
+    <div className='h-screen w-full'>
       <BannerSection /> 
       <CategorySection />
       <div >

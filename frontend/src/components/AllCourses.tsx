@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
-
-
 const AllCourses = () => {
     const location = useLocation();
     const [courses, setCourses] = useState([]);
     useEffect(() => {
         setCourses(location.state);
     }, []);
+    console.log(location.state)
 
   return (
     <div className="flex flex-wrap h-[635px] justify-around p-8">

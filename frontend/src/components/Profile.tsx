@@ -6,7 +6,7 @@ import gsap from 'gsap';
 
 const Profile = () => {
     const setIsLoggedIn = useSetRecoilState(loggedInAtom);
-    const user = JSON.parse(window.localStorage.getItem("user"));
+    const user = JSON.parse(window.localStorage.getItem("user") ?? 'null');
     const navigate = useNavigate();
     function logout() {
         window.localStorage.removeItem("token");

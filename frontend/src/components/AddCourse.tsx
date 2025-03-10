@@ -10,16 +10,16 @@ const AddCourse = () => {
     const {register, handleSubmit} = useForm();
     const navigate = useNavigate();
     const [lessons, setLessons] = useRecoilState(lessonAtom);
-    const lessonContainer = useRef();
+    const lessonContainer = useRef<HTMLDivElement>();
     const [rowNumber, setRowNumber] = useState(1);
 
-    function RemoveLessonRow(e) {
-        setLessons(lessons.filter((lesson) => lesson.id !== e.target.parentElement.id));
+    function RemoveLessonRow(e: React.MouseEvent<SVGSVGElement, MouseEvent>) {
+        setLessons(lessons.filter((lesson: { id: string }) => lesson.id !== e.currentTarget.parentElement?.id));
     }
 
-    function addLessonRow () {
+    function addLessonRow() {
         const newLesson = (
-            <div key={rowNumber} id={rowNumber} ref={lessonContainer} className='bg-white border-[1px] border-gray-500 rounded-lg p-3 relative flex flex-wrap gap-2 my-2 pt-6 lg:gap-10 xl:w-[80%]'>
+            <div key={rowNumber} id={rowNumber.toString()} ref={lessonContainer} className='bg-white border-[1px] border-gray-500 rounded-lg p-3 relative flex flex-wrap gap-2 my-2 pt-6 lg:gap-10 xl:w-[80%]'>
                 <input {...register('lessonTitle')} className='py-1 pl-2 bg-[#01c8b5] outline-none placeholder-black rounded-lg lg:w-60' type='text' placeholder='Lesson Title' />
                 <input {...register('videoFile')} className='border-2 border-gray-300 w-44 lg:w-60' type='file' placeholder='Lesson Video' />
                 <input {...register('duration')} className='py-1 pl-2 bg-[#01c8b5] outline-none placeholder-black rounded-lg lg:w-60' type='text' placeholder='Lesson Duration' />
