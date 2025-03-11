@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Profile from "./Profile";
+import Profile from "./Profile.js";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useEffect, useRef } from "react";

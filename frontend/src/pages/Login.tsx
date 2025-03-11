@@ -1,16 +1,16 @@
 import { useForm } from 'react-hook-form';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import LoadingButton from "@/components/LoadingButton";
-import { signInSchema } from "@/lib/zod";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card.js";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form.js";
+import { Input } from "@/components/ui/input.js";
+import LoadingButton from "@/components/LoadingButton.js";
+import { signInSchema } from "@/lib/zod.js";
 import { z } from "zod";
 import { ErrorContext } from "@better-fetch/fetch";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
-import { authClient } from '../../auth-client';
 import { useNavigate } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { authClient } from 'auth-client.js';
 
 const Login = () => {
   const [pendingCredentials, setPendingCredentilas] = useState(false);
@@ -79,8 +79,8 @@ const Login = () => {
     };
 
   return (
-    <div className="grow flex justify-center px-4 py-40">
-      <Card className="w-full max-w-md dark">
+    <div className="grow flex justify-center px-4 py-20">
+      <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle className="text-3xl font-bold text-center text-transparent bg-clip-text bg-linear-to-t from-gray-800 to-white">Sign in</CardTitle>
         </CardHeader>

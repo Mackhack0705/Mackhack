@@ -1,9 +1,9 @@
-import AboutSection from '../components/AboutSection'
-import BannerSection from '../components/BannerSection'
-import Brand from '../components/Brand'
-import CategorySection from '../components/CategorySection'
-import ReviewSection from '../components/ReviewSection'
-import VideoSection from '../components/VideoSection'
+import AboutSection from '@/components/AboutSection.js'
+import BannerSection from '@/components/BannerSection.js'
+import Brand from '@/components/Brand.js'
+import CategorySection from '@/components/CategorySection.js'
+import ReviewSection from '@/components/ReviewSection.js'
+import VideoSection from '@/components/VideoSection.js'
 
 const Landing = () => {
 
@@ -31,7 +31,7 @@ const Landing = () => {
 
 
   return (
-    <div className='h-screen w-full'>
+    <div className='h-screen w-full dark'>
       <BannerSection /> 
       <CategorySection />
       <div >

@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card.js';
 import {
     Form,
     FormControl,
@@ -6,18 +6,18 @@ import {
     FormItem,
     FormLabel,
     FormMessage
-} from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
-import LoadingButton from '@/components/LoadingButton';
+} from '@/components/ui/form.js';
+import { Input } from '@/components/ui/input.js';
+import LoadingButton from '@/components/LoadingButton.js';
 
-import { signUpSchema } from '@/lib/zod';
+import { signUpSchema } from '@/lib/zod.js';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
 import { useState } from 'react';
 import { useToast } from '@/hooks/use-toast';
-import { authClient } from 'auth-client';
+import { authClient } from 'auth-client.js';
 import { Link } from 'react-router-dom';
 
 

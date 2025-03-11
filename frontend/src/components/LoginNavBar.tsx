@@ -2,7 +2,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
 import {
   CommandDialog,
   CommandEmpty,
@@ -11,7 +10,8 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
-} from "./ui/command";
+} from "./ui/command.js";
+import { Button } from "./ui/button.js";
 
 const LoginNavBar = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -72,7 +72,7 @@ const LoginNavBar = () => {
         <Link to={"/sign-in"}>
           <Button
             variant="default"
-            className="navItems font-bold bg-linear-to-t from-gray-500 to-white"
+            className="navItems dark font-bold bg-linear-to-t from-gray-500 to-white"
           >
             Login
           </Button>
@@ -80,7 +80,7 @@ const LoginNavBar = () => {
         <Link to={"/sign-up"}>
           <Button
             variant="default"
-            className="navItems font-bold bg-linear-to-t from-gray-500 to-white"
+            className="navItems dark font-bold bg-linear-to-t from-gray-500 to-white"
           >
             SignUp
           </Button>
