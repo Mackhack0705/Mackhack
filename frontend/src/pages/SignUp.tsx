@@ -16,14 +16,13 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
 import { useState } from 'react';
-import { useToast } from '@/hooks/use-toast';
-import { authClient } from 'auth-client.js';
+import { authClient } from 'auth-client';
 import { Link } from 'react-router-dom';
+import { toast } from 'sonner';
 
 
 export default function SignUp() {
     const [pending, setPending] = useState(false);
-    const { toast } = useToast();
     const form = useForm<z.infer<typeof signUpSchema>>({
 		resolver: zodResolver(signUpSchema),
 		defaultValues: {
@@ -46,16 +45,14 @@ export default function SignUp() {
 					setPending(true);
 				},
 				onSuccess: () => {
-					toast({
-						title: "Account created",
+					toast.success("Account created", {
 						description:
 							"Your account has been created. Check your email for a verification link.",
 					});
 				},
 				onError: (ctx) => {
 					console.log("error", ctx);
-					toast({
-						title: "Something went wrong",
+					toast.error("Something went wrong", {
 						description: ctx.error.message ?? "Something went wrong.",
 					});
 				},
@@ -65,7 +62,7 @@ export default function SignUp() {
     }
 
     return (
-        <div className='grow flex justify-center items-center p-4'>
+        <div className='grow flex justify-center items-center py-20'>
             <Card className='w-full max-w-md'>
                 <CardHeader>
                     <CardTitle className="text-3xl font-bold text-center text-transparent bg-clip-text bg-linear-to-t from-gray-800 to-white">Create Account</CardTitle>

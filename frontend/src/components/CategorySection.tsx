@@ -2,6 +2,10 @@ import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useRef } from 'react';
+import { Canvas } from '@react-three/fiber';
+import { Environment, ScrollControls } from "@react-three/drei";
+import MacContainer from './MacContainer.js';
+
 
 const CategorySection = () => {
   let sectionRef = useRef(null);
@@ -28,12 +32,22 @@ const CategorySection = () => {
   })
 
   return (
-    <section ref={targetRef} className='h-[850px] text-center overflow-hidden'>
-      <div className='text-3xl font-bold m-5 md:text-5xl'>
+    <section ref={targetRef} className='h-screen text-center'>
+      <div className='text-3xl font-bold m-5 md:text-5xl bg-gradient-to-t from-gray-500 to-white bg-clip-text text-transparent'>
         <h2>Categories</h2>
       </div>
-      <div >
-        <div ref={sectionRef} className="h-[80%] w-[420vw] flex flex-row relative">
+      <div className='h-fit'>
+        <Canvas camera={{ fov: 12, position: [0, -10, 210] }}>
+          <Environment
+            files={[
+              "https://dl.polyhaven.org/file/ph-assets/HDRIs/exr/4k/studio_small_09_4k.exr",
+            ]}
+          />
+          <ScrollControls style={{scrollbarWidth: 'none'}} pages={3}>
+            <MacContainer />
+          </ScrollControls>
+        </Canvas>
+        {/* <div ref={sectionRef} className="h-[80%] w-[420vw] flex flex-row relative">
           <div className='h-[100vh] px-10 w-[130vw] flex justify-center items-center text-5xl font-semibold md:text-8xl'>
             <h3>Web Development</h3>
           </div>
@@ -46,7 +60,7 @@ const CategorySection = () => {
           <div className='h-[100vh] px-10 w-[130vw] flex justify-center items-center text-5xl font-semibold md:text-8xl'>
             <h3>App Development</h3>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   )

@@ -7,16 +7,15 @@ import { signInSchema } from "@/lib/zod.js";
 import { z } from "zod";
 import { ErrorContext } from "@better-fetch/fetch";
 import { useState } from "react";
-import { useToast } from "@/hooks/use-toast";
 import { useNavigate } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { authClient } from 'auth-client.js';
+import { authClient } from 'auth-client';
+import { toast } from 'sonner';
 
 const Login = () => {
   const [pendingCredentials, setPendingCredentilas] = useState(false);
     const [pendingGithub, setPendingGithub] = useState(false);
     const router = useNavigate();
-    const { toast } = useToast();
 
     const form = useForm<z.infer<typeof signInSchema>>({
         resolver: zodResolver(signInSchema),
@@ -43,10 +42,8 @@ const Login = () => {
                 },
                 onError: (ctx: ErrorContext) => {
                     console.log(ctx);
-                    toast({
-                        title: "Something went wrong",
+                    toast.error("Something went wrong", {
                         description: ctx.error.message ?? "Something went wrong",
-                        variant: "destructive",
                     });
                 },
             }
@@ -67,10 +64,8 @@ const Login = () => {
                     router("/");
                 },
                 onError: (ctx: ErrorContext) => {
-                    toast({
-                        title: "Something went wrong",
+                    toast.error("Something went wrong", {
                         description: ctx.error.message ?? "Something went wrong",
-                        variant: "destructive",
                     });
                 },
             }
@@ -79,7 +74,7 @@ const Login = () => {
     };
 
   return (
-    <div className="grow flex justify-center px-4 py-20">
+    <div className="grow flex justify-center px-4 py-36">
       <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle className="text-3xl font-bold text-center text-transparent bg-clip-text bg-linear-to-t from-gray-800 to-white">Sign in</CardTitle>
