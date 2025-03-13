@@ -11,6 +11,41 @@ const CategorySection = () => {
   let sectionRef = useRef(null);
   let targetRef = useRef(null);
 
+  const categories = [
+    {
+      id: 1,
+      textLists: [
+        "Enter A17 Pro.",
+        "Game‑changing chip.",
+        "Groundbreaking performance.",
+      ],
+      video: '/videos/category-first.mp4',
+      videoDuration: 4,
+    },
+    {
+      id: 2,
+      textLists: ["Titanium.", "So strong. So light. So Pro."],
+      video: '/videos/category-second.mp4',
+      videoDuration: 5,
+    },
+    {
+      id: 3,
+      textLists: [
+        "iPhone 15 Pro Max has the",
+        "longest optical zoom in",
+        "iPhone ever. Far out.",
+      ],
+      video: '/videos/category-third.mp4',
+      videoDuration: 2,
+    },
+    {
+      id: 4,
+      textLists: ["All-new Action button.", "What will yours do?."],
+      video: '/videos/category-four.mp4',
+      videoDuration: 3.63,
+    },
+  ]
+
   gsap.registerPlugin(ScrollTrigger);
 
   useGSAP(() => {
@@ -32,21 +67,20 @@ const CategorySection = () => {
   })
 
   return (
-    <section ref={targetRef} className='h-screen text-center'>
+    <section className='h-screen text-center'>
       <div className='text-3xl font-bold m-5 md:text-5xl bg-gradient-to-t from-gray-500 to-white bg-clip-text text-transparent'>
         <h2>Categories</h2>
       </div>
-      <div className='h-fit'>
-        <Canvas camera={{ fov: 12, position: [0, -10, 210] }}>
-          <Environment
-            files={[
-              "https://dl.polyhaven.org/file/ph-assets/HDRIs/exr/4k/studio_small_09_4k.exr",
-            ]}
-          />
-          <ScrollControls style={{scrollbarWidth: 'none'}} pages={3}>
-            <MacContainer />
-          </ScrollControls>
-        </Canvas>
+      <div className='h-screen flex items-center border border-red-500'>
+        {
+          categories.map((list, i) => (
+            <div key={i} id='slider'>
+              <div className='video-carousel_container'>
+                Text
+              </div>
+            </div>
+          ))
+        }
         {/* <div ref={sectionRef} className="h-[80%] w-[420vw] flex flex-row relative">
           <div className='h-[100vh] px-10 w-[130vw] flex justify-center items-center text-5xl font-semibold md:text-8xl'>
             <h3>Web Development</h3>
