@@ -74,9 +74,17 @@ const CategorySection = () => {
       <div className='h-screen flex items-center border border-red-500'>
         {
           categories.map((list, i) => (
-            <div key={i} id='slider'>
-              <div className='video-carousel_container'>
-                Text
+            <div key={list.id} id='slider' className='sm:pr-20 pr-10 border border-blue-500'>
+              <div className='video-carousel_container border border-yellow-500'>
+                <div className='w-full h-full flex-center rounded-3xl overflow-hidden bg-black'>
+                  <video id='video' playsInline={true} preload='auto' muted>
+                    <source src={list.video} type='video/mp4' />
+                  </video>
+                </div>
+
+                <div className='absolute top-12 left-[5%] z-10'>
+                  
+                </div>
               </div>
             </div>
           ))
