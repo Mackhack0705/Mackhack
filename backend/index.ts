@@ -1,11 +1,11 @@
 import express from 'express';
 import { toNodeHandler } from 'better-auth/node';
 import { auth } from './auth';
-import bodyParser from 'body-parser';
-import adminRoute from './routes/admin';
-import userRoute from './routes/user';
-import searchRoute from './routes/search';
-import courseRoute from './routes/course';
+// import bodyParser from 'body-parser';
+// import adminRoute from './routes/admin';
+// import userRoute from './routes/user';
+// import searchRoute from './routes/search';
+// import courseRoute from './routes/course';
 import cors from 'cors';
 
 const app = express();
@@ -16,11 +16,11 @@ app.use(cors({
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
 }));
-app.use(bodyParser.json());
-app.use('/admin', adminRoute);
-app.use('/user', userRoute);
-app.use('/search', searchRoute);
-app.use('/course', courseRoute);
+// app.use(bodyParser.json());
+// app.use('/admin', adminRoute);
+// app.use('/user', userRoute);
+// app.use('/search', searchRoute);
+// app.use('/course', courseRoute);
 
 const port = process.env.PORT || 8080 || 3000;
 

@@ -3,11 +3,12 @@ import signupMiddleware from '../middlewares/signupValidation';
 import userMiddleware from '../middlewares/user';
 import { JWT_SECRET } from '../config';
 import prisma from '../db/index';
+import { signin, signup } from '../types';
 
 const router = Router();
 
 router.post('/signup', async (req, res) => {
-    const body = req.body;
+    const body: signup = req.body;
     try {
         const user = await prisma.user.findFirst({
             where: {
@@ -33,8 +34,9 @@ router.post('/signup', async (req, res) => {
 })
 
 router.post('/signin', async (req, res) => {
-    const email = req.body.username;
-    const password = req.body.password;
+    const body: signin = req.body;
+    const email = body.username;
+    const password = body.password;
     try {
         
     } catch (err) {
