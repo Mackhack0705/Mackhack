@@ -11,14 +11,16 @@ import cors from 'cors';
 const app = express();
 const port = process.env.PORT || 8080 || 3000;
 
+app.use(cors({
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
+}));
+
+app.use(bodyParser.json());
+
 app.all("/api/auth/*", toNodeHandler(auth));
 
-app.use(cors({
-    origin: "http://localhost:5173/",
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
-}));
-app.use(bodyParser.json());
 // app.use('/admin', adminRoute);
 // app.use('/user', userRoute);
 // app.use('/search', searchRoute);

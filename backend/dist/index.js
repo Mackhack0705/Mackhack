@@ -14,13 +14,13 @@ const body_parser_1 = __importDefault(require("body-parser"));
 const cors_1 = __importDefault(require("cors"));
 const app = (0, express_1.default)();
 const port = process.env.PORT || 8080 || 3000;
-app.all("/api/auth/*", (0, node_1.toNodeHandler)(auth_1.auth));
 app.use((0, cors_1.default)({
-    origin: "http://localhost:5173/",
+    origin: "http://localhost:5173",
     methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
+    credentials: true
 }));
 app.use(body_parser_1.default.json());
+app.all("/api/auth/*", (0, node_1.toNodeHandler)(auth_1.auth));
 // app.use('/admin', adminRoute);
 // app.use('/user', userRoute);
 // app.use('/search', searchRoute);

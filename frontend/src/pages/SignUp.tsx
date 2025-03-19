@@ -42,15 +42,17 @@ export default function SignUp() {
 			},
 			{
 				onRequest: () => {
-					setPending(true);
+                    setPending(true);
 				},
 				onSuccess: () => {
+                    console.log('success')
 					toast.success("Account created", {
 						description:
 							"Your account has been created. Check your email for a verification link.",
 					});
 				},
 				onError: (ctx) => {
+                    console.log('failed')
 					console.log("error", ctx);
 					toast.error("Something went wrong", {
 						description: ctx.error.message ?? "Something went wrong.",
