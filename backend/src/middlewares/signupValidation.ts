@@ -1,7 +1,7 @@
-"use strict";
 // // inputValidation for handling input validation
 // import { NextFunction, Request, Response } from 'express';
 // import zod from 'zod';
+
 // const inputSchema = zod.object({
 //     firstName: zod.string(),
 //     lastName: zod.string(),
@@ -10,6 +10,7 @@
 //     provider: zod.string(),
 //     isAdmin: zod.boolean()
 // })
+
 // export default function inputValidation(req: Request, res: Response, next: NextFunction) {
 //     const body = req.body;
 //     console.log(body);

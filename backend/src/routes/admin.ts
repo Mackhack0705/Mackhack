@@ -1,4 +1,3 @@
-"use strict";
 // import { Router } from "express";
 // // import signupValidation from '../middlewares/signupValidation';
 // // import courseValidation from '../middlewares/courseValidation';
@@ -7,7 +6,10 @@
 // // import { JWT_SECRET } from '../config';
 // import userMiddleware from '../middlewares/user';
 // import prisma from "../db/index";
+
 // const router = Router();
+
+
 // router.put('/teaching', async (req, res) => {
 //     const body = req.body;
 //     try {
@@ -21,17 +23,23 @@
 //         })
 //     }
 // })
+
+
 // // router.post('/upload-image', (req, res) => {
 // //     const file = req.file;
+
 // //     const output = bucket.file(`images/${Date.now()}_${file.originalname}`);
+
 // //     const stream = output.createWriteStream({
 // //         metadata: {
 // //           contentType: req.file.mimetype,
 // //         },
 // //     });
+
 // //     stream.on('error', (err) => {
 // //         return res.status(500).json({ err });
 // //     });
+    
 // //     stream.on('finish', async () => {
 // //         const publicUrl = `https://storage.googleapis.com/${bucket.name}/${output.name}`;
 // //         const fileName = output.name.split('/')[1];
@@ -44,19 +52,25 @@
 // //             imageFile
 // //          });
 // //     });
+    
 // //     stream.end(req.file.buffer);
+
 // // })
+
 // // router.post('/upload-video', upload.single('videoFile'), (req, res) => {
 // //     const file = req.file;
 // //     const output = bucket.file(`videos/${Date.now()}_${file.originalname}`);
+
 // //     const stream = output.createWriteStream({
 // //         metadata: {
 // //         contentType: file.mimetype,
 // //         },
 // //     });
+
 // //     stream.on('error', (err) => {
 // //         return res.status(500).json({ err });
 // //     });
+    
 // //     stream.on('finish', async () => {
 // //         const publicUrl = `https://storage.googleapis.com/${bucket.name}/${output.name}`;
 // //         const fileName = output.name.split('/')[1];
@@ -69,10 +83,14 @@
 // //             videoFile
 // //          });
 // //     });
+    
 // //     stream.end(req.file.buffer);
+
 // // })
+
 // router.post('/courses/add', async (req, res) => {
 //     const body = req.body;
+    
 //     try {
 //         const course = await prisma.course.create({
 //             data: body
@@ -86,6 +104,7 @@
 //         })
 //     }
 // })
+
 // router.get('/courses', async (req, res) => {
 //     const instructorId = req.query.instructorId;
 //     try {
@@ -103,6 +122,7 @@
 //         })
 //     }
 // })
+
 // router.delete('/courses/remove/:courseId', async (req, res) => {
 //     const courseId = req.params.courseId;
 //     try {
@@ -120,6 +140,7 @@
 //         })
 //     }
 // })
+
 // router.put('/courses/update/:courseId', async (req, res) => {
 //     const body = req.body;
 //     const courseId = req.params.courseId;
@@ -140,4 +161,5 @@
 //         })
 //     }
 // })
+
 // export default router;

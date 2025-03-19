@@ -1,11 +1,12 @@
-"use strict";
 // import { Router } from 'express';
 // import signupMiddleware from '../middlewares/signupValidation';
 // import userMiddleware from '../middlewares/user';
 // import { JWT_SECRET } from '../config';
 // import prisma from '../db/index';
 // import { signin, signup } from '../types';
+
 // const router = Router();
+
 // router.post('/signup', async (req, res) => {
 //     const body: signup = req.body;
 //     try {
@@ -31,17 +32,20 @@
 //         })
 //     }
 // })
+
 // router.post('/signin', async (req, res) => {
 //     const body: signin = req.body;
 //     const email = body.username;
 //     const password = body.password;
 //     try {
+        
 //     } catch (err) {
 //         res.status(500).json({
 //             msg: "Something went wrong"
 //         })
 //     }
 // })
+
 // router.get("/", async (req, res) => {
 //     const userId = req.query.userId;
 //     try {
@@ -59,6 +63,7 @@
 //         })
 //     }
 // })
+
 // router.get('/courses', async (req, res) => {
 //     try {
 //         const courses = await prisma.course.findMany({});
@@ -71,6 +76,7 @@
 //         })
 //     }
 // })
+
 // // router.post('/courses/:courseId', userMiddleware, async (req, res) => {
 // //     const courseId = req.params.courseId;
 // //     const username = req.username;
@@ -97,6 +103,7 @@
 // //         })
 // //     }
 // // })
+
 // // router.get('/purchasedCourses', userMiddleware, async (req, res) => {
 // //     try {
 // //         const purchasedCourses = await prisma.course.findMany({

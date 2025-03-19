@@ -3,11 +3,10 @@
   "version": "1.0.0",
   "description": "Backend of the course selling app",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/index.js",
-    "dev": "nodemon dist/index.js"
+    "start": "node ./dist/index.js",
+    "dev": "nodemon ./src/index.ts"
   },
   "author": "Rajesh Mali",
   "license": "ISC",
@@ -21,14 +20,15 @@
     "cors": "^2.8.5",
     "express": "^4.19.2",
     "type-fest": "^4.33.0",
-    "typescript": "^5.7.3",
     "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/node": "^22.13.10",
-    "nodemon": "^3.1.4",
-    "prima": "^0.0.1"
+    "nodemon": "^3.1.9",
+    "prima": "^0.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
   }
 }

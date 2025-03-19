@@ -1,8 +1,9 @@
-"use strict";
 // import { Request, Response, NextFunction } from 'express';
+
 // // User Middlewar for handling authentication
 // const jwt = require('jsonwebtoken');
 // const { JWT_SECRET } = require('../config');
+
 // export default function userMiddleware(req: Request, res: Response, next: NextFunction) {
 //     // Implement authentication logic
 //     // You need to check the headers and validate the admin from the admin DB. Check README file for exact headers to be expected.

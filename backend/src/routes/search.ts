@@ -1,8 +1,9 @@
-"use strict";
 // import { Router } from 'express';
 // import prisma from '../db/index';
 // // import { Course } from '../db';
+
 // const router = Router();
+
 // router.post('/courses', async (req, res) => {
 //     const courseTitle = req.query.q;
 //     try {
@@ -24,6 +25,7 @@
 //         })
 //     }
 // })
+
 // router.post('/suggestions', async (req, res) => {
 //     const title = req.query.q;
 //     try {
@@ -44,4 +46,5 @@
 //         })
 //     }
 // })
+
 // export default router;

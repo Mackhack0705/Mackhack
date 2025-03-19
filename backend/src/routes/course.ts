@@ -1,8 +1,10 @@
-"use strict";
 // import { Router } from 'express';
 // import prisma from '../db/index';
 // // import { Course } from '../db';
+
+
 // const router = Router();
+
 // router.get('/:courseId', async (req, res) => {
 //     const courseId = req.params.courseId;
 //     try {
@@ -20,4 +22,5 @@
 //         })
 //     }
 // })
+
 // export default router;
