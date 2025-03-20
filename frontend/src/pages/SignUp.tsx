@@ -35,9 +35,7 @@ export default function SignUp() {
 
     const onSubmit = async (values: z.infer<typeof signUpSchema>) => {
         try {
-            setPending(true);
-            console.log('request')
-
+            
             await authClient.signUp.email(
                 {
                     email: values.email,
@@ -46,6 +44,8 @@ export default function SignUp() {
                 },
                 {
                     onRequest: () => {
+                        console.log('request')
+                        setPending(true);
                         
                     },
                     onSuccess: () => {

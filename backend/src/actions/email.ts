@@ -10,10 +10,12 @@ export async function sendEmail({
     text: string;
 }) {
     if(!process.env.SENDGRID_API_KEY) {
+        console.log('hi');
         throw new Error("SENDGRID_API_KEY environment variable is not set");
     }
 
     if(!process.env.EMAIL_FROM) {
+        console.log('bye');
         throw new Error("EMAIL_FROM environment variable is not set");
     }
 
@@ -25,6 +27,7 @@ export async function sendEmail({
         subject: subject.trim(),
         text: text.trim(),
     };
+    console.log(message)
 
     try {
         const [response] = await sgMail.send(message);

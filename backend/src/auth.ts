@@ -4,6 +4,10 @@ import prisma from "./db";
 import { sendEmail } from "./actions/email";
 
 export const auth = betterAuth({
+    trustedOrigins: [
+        'http://localhost:5173',
+        'http://localhost:8000'
+    ],
     database: prismaAdapter(prisma, {
         provider: "mongodb",
     }),
