@@ -14,11 +14,12 @@ import {
 } from "./ui/command.js";
 import { Button } from "./ui/button.js";
 import SignOut from "./SignOut.js";
+import Profile from "./Profile.js";
 
 const NavBar = () => {
   const [session, setSession] = useState<any>({});
   useEffect(() => {
-    async function Session () {
+    async function Session() {
       const result = await authClient.getSession();
       setSession(result.data?.session);
     }
@@ -43,10 +44,41 @@ const NavBar = () => {
         >
           Mackhack
         </Link>
+        {!session ? (
+          <></>
+        ) : (
+          <div className="navItems flex gap-10 items-center">
+            <Link
+              className="link bg-linear-to-t from-gray-500 to-white bg-clip-text text-transparent"
+              to={"/"}
+            >
+              Home
+            </Link>
+            <Link
+              className="link bg-linear-to-t from-gray-500 to-white bg-clip-text text-transparent"
+              to={"/courses"}
+            >
+              Courses
+            </Link>
+            <Link
+              className="link bg-linear-to-t from-gray-500 to-white bg-clip-text text-transparent"
+              to={"/contactUs"}
+            >
+              Contact us
+            </Link>
+            <Link
+              className="link bg-linear-to-t from-gray-500 to-white bg-clip-text text-transparent"
+              to={"/aboutUs"}
+            >
+              About
+            </Link>
+          </div>
+        )}
+
         <div
-          id="menu"
-          className="flex gap-4 items-center justify-center absolute top-14 right-5 bg-white border-[1px] border-gray-300 rounded-md w-28 py-4 invisible md:visible md:bg-transparent md:border-0 md:w-40 md:relative md:top-0 lg:justify-between"
+          className="flex gap-2 items-center absolute top-14 right-5 bg-white border-[1px] border-gray-300 rounded-md w-28 py-4 invisible md:visible md:bg-transparent md:border-0 md:relative md:top-0 lg:justify-between"
         >
+          {" "}
           <div className="navItems cursor-pointer">
             <svg
               onClick={() => setOpen(true)}
@@ -101,7 +133,22 @@ const NavBar = () => {
               </Link>
             </>
           ) : (
-            <SignOut />
+            <>
+              <div className="navItems flex gap-2 items-center">
+                <div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 448 512"
+                    className="size-6 text-white"
+                  >
+                    <path d="M352 160v-32C352 57.4 294.6 0 224 0 153.4 0 96 57.4 96 128v32H0v272c0 44.2 35.8 80 80 80h288c44.2 0 80-35.8 80-80V160h-96zm-192-32c0-35.3 28.7-64 64-64s64 28.7 64 64v32H160v-32zm160 120c-13.3 0-24-10.7-24-24s10.7-24 24-24 24 10.7 24 24-10.7 24-24 24zm-192 0c-13.3 0-24-10.7-24-24s10.7-24 24-24 24 10.7 24 24-10.7 24-24 24z" />
+                  </svg>
+                </div>
+                {/* <SignOut /> */}
+              </div>
+              <Profile />
+            </>
           )}
         </div>
       </div>

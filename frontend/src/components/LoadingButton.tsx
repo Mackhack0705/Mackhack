@@ -13,7 +13,7 @@ const LoadingButton = ({
   return (
     <Button
         onClick={onClick}
-        className="w-full"
+        className="w-full navItems dark font-bold bg-linear-to-t from-gray-500 to-white"
         type="submit"
         disabled={pending}
     >
