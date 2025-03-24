@@ -15,8 +15,10 @@ const SignUp = React.lazy(() => import("@/pages/SignUp.js"));
 const Landing = React.lazy(() => import("@/pages/Landing.js"));
 import Loader from "@/components/Loader.js";
 import { Toaster } from "sonner";
+import EmailVerified from "./pages/EmailVerified.js";
 
 function App() {
+
   return (
     <BrowserRouter>
       <NavBar />
@@ -106,6 +108,14 @@ function App() {
           element={
             <React.Suspense>
               <LoginFailed />
+            </React.Suspense>
+          }
+        />
+        <Route
+          path="/email-verified"
+          element={
+            <React.Suspense>
+              <EmailVerified />
             </React.Suspense>
           }
         />

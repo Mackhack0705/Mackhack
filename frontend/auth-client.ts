@@ -7,3 +7,5 @@ export const authClient = createAuthClient({
         'Content-Type': 'application/json'
     }
 })
+
+export type Session = typeof authClient.$Infer.Session;

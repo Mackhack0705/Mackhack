@@ -39,6 +39,7 @@ const Login = () => {
                 },
                 onSuccess: async () => {
                     router("/");
+                    router(0);
                 },
                 onError: (ctx: ErrorContext) => {
                     console.log(ctx);
