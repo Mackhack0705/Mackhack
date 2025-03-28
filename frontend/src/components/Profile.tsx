@@ -13,7 +13,7 @@ import {
 } from "./ui/dropdown-menu.js";
 import SignOut from "./SignOut.js";
 
-const Profile = () => {
+const Profile = ({session}: {session: any}) => {
   // const setIsLoggedIn = useSetRecoilState(loggedInAtom);
   const user = JSON.parse(window.localStorage.getItem("user") ?? "null");
   const navigate = useNavigate();
@@ -51,7 +51,7 @@ const Profile = () => {
           </svg>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="dark">
-          <DropdownMenuLabel>Rajesh mali</DropdownMenuLabel>
+          <DropdownMenuLabel>{session.user.name}</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
             <Link to={"/"} className="w-full">My Cart</Link>
@@ -60,7 +60,7 @@ const Profile = () => {
             <Link to={"/"} className="w-full">My Learing</Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Link to={"/teaching"} className="w-full">Teach on Makehack</Link>
+            <Link to={"/teaching"} className="w-full">Teach on Mackhack</Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
             <SignOut />
