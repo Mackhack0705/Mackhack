@@ -48,7 +48,7 @@ const CategorySection = () => {
   const handleLoadedMetaData = (i: number, e: Event) => setLoadedData((prev) => [...prev, e]);
 
   useEffect(() => {
-    const currentProgress = 0;
+    let currentProgress = 0;
     let span = videoSpanRef.current;
 
     if(span[videoId]) {
@@ -76,9 +76,33 @@ const CategorySection = () => {
         }, 
 
         onComplete: () => {
+          if(isPlaying) {
+            gsap.to(videoDivRef.current[videoId], {
+              width: '12px'
+            })
 
+            gsap.to(span[videoId], {
+              backgroundColor: '#afafaf'
+            })
+          }
         }
       })
+
+      if(videoId === 0) {
+        anim.restart();
+      }
+
+      const animUpdate = () => {
+        if (videoRef.current[videoId]) {
+          anim.progress((videoRef.current[videoId]?.currentTime || 0) / categories[videoId].videoDuration);
+        }
+      }
+
+      if(isPlaying) {
+        gsap.ticker.add(animUpdate);
+      } else {
+        gsap.ticker.remove(animUpdate);
+      }
     }
   }, [videoId, startPlay])
 
@@ -152,11 +176,11 @@ const CategorySection = () => {
       <div className='text-3xl font-bold m-5 md:text-5xl bg-gradient-to-t from-gray-500 to-white bg-clip-text text-transparent'>
         <h2>Categories</h2>
       </div>
-      <div className='h-screen flex items-center border border-red-500 overflow-hidden'>
+      <div className='flex items-center overflow-hidden'>
         {
           categories.map((list, i) => (
-            <div key={list.id} id='slider' className='sm:pr-20 pr-10 border border-blue-500'>
-              <div className='video-carousel_container border border-yellow-500'>
+            <div key={list.id} id='slider' className='sm:pr-20 pr-10'>
+              <div className='video-carousel_container'>
                 <div className='w-full h-full flex-center rounded-3xl overflow-hidden bg-black'>
                   <video id='video' playsInline={true} preload='auto' muted ref={(el) => (videoRef.current[i] = el)}
                     onPlay={
@@ -185,7 +209,7 @@ const CategorySection = () => {
       </div>
 
       <div className='relative flex-center mt-10'>
-        <div className='flex-center py-5 px-7 bg-gray-300 backdrop-blur rounded-full'>
+        <div className='flex-center py-5 px-7 bg-neutral-700 backdrop-blur rounded-full'>
           {videoRef.current.map((_, i) => (
             <span key={i} ref={(el) => (videoDivRef.current[i] = el)} className='mx-2 w-3 h-3 bg-gray-200 rounded-full relative cursor-pointer'>
               <span className='absolute h-full w-full rounded-full' ref={(el) => (videoSpanRef.current[i] = el)} />

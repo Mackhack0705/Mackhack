@@ -123,11 +123,18 @@
   }
 }
 
+@utility flex-center {
+  @apply flex items-center justify-center;
+}
+
 @layer utilities {
-  .flex-center {
+  /* .flex-center {
     @apply flex items-center justify-center
-  }
+  } */
   .video-carousel_container {
     @apply relative sm:w-[70vw] w-[88vw] md:h-[70vh] sm:h-[50vh] h-[35vh]
+  }
+  .control-btn {
+    @apply ml-4 p-4 rounded-full bg-neutral-700 backdrop-blur flex-center
   }
 }
