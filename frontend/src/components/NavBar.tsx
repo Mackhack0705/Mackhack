@@ -20,8 +20,15 @@ const NavBar = () => {
   const [session, setSession] = useState<any>({});
   useEffect(() => {
     async function Session() {
-      const result = await authClient.getSession();
-      setSession(result.data);
+      try {
+        const result = await authClient.getSession();
+        console.log(result);
+        setSession(result.data);
+      }
+      catch (error) {
+        console.log(error);
+      }
+      // setSession(result.data);
     }
     Session();
   }, []);
@@ -39,7 +46,7 @@ const NavBar = () => {
     <nav>
       <div className="flex items-center justify-between relative text-lg font-bold py-6 px-4 xl:px-20">
         <Link
-          className="navItems text-2xl md:text-3xl bg-linear-to-t from-gray-500 to-white bg-clip-text text-transparent"
+          className="navItems text-3xl bg-linear-to-t from-gray-500 to-white bg-clip-text text-transparent"
           to={"/"}
         >
           Mackhack
@@ -47,7 +54,7 @@ const NavBar = () => {
         {!session.session ? (
           <></>
         ) : (
-          <div className="navItems flex gap-10 items-center">
+          <div className="navItems hidden md:flex gap-10 items-center">
             <Link
               className="link bg-linear-to-t from-gray-500 to-white bg-clip-text text-transparent"
               to={"/"}
@@ -75,10 +82,7 @@ const NavBar = () => {
           </div>
         )}
 
-        <div
-          className="flex gap-2 items-center absolute top-14 right-5 bg-white border-[1px] border-gray-300 rounded-md w-28 py-4 invisible md:visible md:bg-transparent md:border-0 md:relative md:top-0 lg:justify-between"
-        >
-          {" "}
+        <div className="flex gap-2 items-center">
           <div className="navItems cursor-pointer">
             <svg
               onClick={() => setOpen(true)}
@@ -90,16 +94,19 @@ const NavBar = () => {
               className="size-7"
             >
               <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
               />
             </svg>
             <CommandDialog open={open} onOpenChange={setOpen}>
               <CommandInput placeholder="Type a command or search..." />
               <CommandList>
-                <CommandEmpty>No results found.</CommandEmpty>
-                <CommandGroup heading="Suggestions">
+          <CommandEmpty>No results found.</CommandEmpty>
+          <CommandGroup heading="Suggestions">
+            <CommandItem>Calendar</CommandItem>
+            <CommandItem>Search Emoji</CommandItem>
+            <CommandItem>Calculator</CommandItem>
                   <CommandItem>Calendar</CommandItem>
                   <CommandItem>Search Emoji</CommandItem>
                   <CommandItem>Calculator</CommandItem>

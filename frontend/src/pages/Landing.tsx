@@ -34,7 +34,7 @@ const Landing = () => {
     <div className='h-screen w-full dark'>
       <BannerSection /> 
       <CategorySection />
-      <div >
+      {/* <div >
         <div className='text-3xl text-center font-bold md:text-5xl'>
           <h2>Brands</h2>
         </div> <br />
@@ -57,7 +57,7 @@ const Landing = () => {
           }
         </div>
       </div>
-      <AboutSection />
+      <AboutSection /> */}
     </div>
   )
 }

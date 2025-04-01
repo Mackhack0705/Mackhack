@@ -1,6 +1,10 @@
-import { pauseImg, playImg, replayImg } from '@/lib/utils.js';
+import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
+import { ScrollTrigger } from "gsap/all";
+gsap.registerPlugin(ScrollTrigger);
 import { useEffect, useRef, useState } from 'react';
+
+import { pauseImg, playImg, replayImg } from '@/lib/utils.js';
 
 const CategorySection = () => {
   const videoRef = useRef<(HTMLVideoElement | null)[]>([]);
@@ -15,9 +19,21 @@ const CategorySection = () => {
     isPlaying: false,
   });
 
+  const [loadedData, setLoadedData] = useState<Event[]>([]);
   const { isEnd, isLastVideo, startPlay, videoId, isPlaying } = video;
 
-  const [loadedData, setLoadedData] = useState([]);
+  useGSAP(() => {
+    gsap.to('#video', {
+      scrollTrigger: {
+        trigger: '#video',
+        toggleActions: 'restart none none none'
+      },
+      onComplete: () => {
+        setVideo((pre) => ({ ...pre, startPlay: true, isPlaying: true }));
+      }
+    })
+  }, [isEnd, videoId])
+
 
   useEffect(() => {
     if(loadedData.length > 3) {
@@ -29,6 +45,8 @@ const CategorySection = () => {
     }
   }, [startPlay, videoId, isPlaying, loadedData])
 
+  const handleLoadedMetaData = (i: number, e: Event) => setLoadedData((prev) => [...prev, e]);
+
   useEffect(() => {
     const currentProgress = 0;
     let span = videoSpanRef.current;
@@ -37,7 +55,24 @@ const CategorySection = () => {
       // animate the progress of the video
       let anim = gsap.to(span[videoId], {
         onUpdate: () => {
+          const progress = Math.ceil(anim.progress() * 100);
 
+          if(progress != currentProgress) {
+            currentProgress = progress;
+
+            gsap.to(videoDivRef.current[videoId], {
+              width: window.innerWidth < 760
+              ? '10vw'
+              : window.innerWidth < 1200 
+              ? '10vw'
+              : '4vw'
+            })
+
+            gsap.to(span[videoId], {
+              width: `${currentProgress}%`,
+              backgroundColor: 'white'
+            })
+          }
         }, 
 
         onComplete: () => {
@@ -117,7 +152,7 @@ const CategorySection = () => {
       <div className='text-3xl font-bold m-5 md:text-5xl bg-gradient-to-t from-gray-500 to-white bg-clip-text text-transparent'>
         <h2>Categories</h2>
       </div>
-      <div className='h-screen flex items-center border border-red-500'>
+      <div className='h-screen flex items-center border border-red-500 overflow-hidden'>
         {
           categories.map((list, i) => (
             <div key={list.id} id='slider' className='sm:pr-20 pr-10 border border-blue-500'>
@@ -130,7 +165,8 @@ const CategorySection = () => {
                           ...prevVideo, isPlaying: true
                         }))
                       }
-                    }>
+                    }
+                    onLoadedMetadata={(e) => handleLoadedMetaData(i, e.nativeEvent)}>
                     <source src={list.video} type='video/mp4' />
                   </video>
                 </div>

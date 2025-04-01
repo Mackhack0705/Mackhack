@@ -27,14 +27,13 @@ export async function sendEmail({
         subject: subject.trim(),
         text: text.trim(),
     };
-    console.log(message)
 
     try {
         const [response] = await sgMail.send(message);
 
-        if(response.statusCode === 202) {
-            throw new Error(`SendGrid API returned status code ${response.statusCode}`);
-        }
+        // if(response.statusCode === 202) {
+        //     throw new Error(`SendGrid API returned status code ${response.statusCode}`);
+        // }
 
         return {
             success: true,
