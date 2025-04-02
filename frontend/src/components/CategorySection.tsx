@@ -4,6 +4,8 @@ import { ScrollTrigger } from "gsap/all";
 gsap.registerPlugin(ScrollTrigger);
 import { useEffect, useRef, useState } from 'react';
 
+
+import { categories } from '@/constants/index.js';
 import { pauseImg, playImg, replayImg } from '@/lib/utils.js';
 
 const CategorySection = () => {
@@ -19,13 +21,18 @@ const CategorySection = () => {
     isPlaying: false,
   });
 
-  const [loadedData, setLoadedData] = useState<Event[]>([]);
+  const [loadedData, setLoadedData] = useState<React.SyntheticEvent<HTMLVideoElement>[]>([]);
   const { isEnd, isLastVideo, startPlay, videoId, isPlaying } = video;
 
   useGSAP(() => {
-    gsap.to('#video', {
+    gsap.to('#slider', {
+      transform: `translateX(${-100 * videoId}%)`,
+      duration: 2,
+      ease: 'power2.inOut',
+    })
+    gsap.to('.video-item', {
       scrollTrigger: {
-        trigger: '#video',
+        trigger: '.video-item',
         toggleActions: 'restart none none none'
       },
       onComplete: () => {
@@ -45,7 +52,7 @@ const CategorySection = () => {
     }
   }, [startPlay, videoId, isPlaying, loadedData])
 
-  const handleLoadedMetaData = (i: number, e: Event) => setLoadedData((prev) => [...prev, e]);
+  const handleLoadedMetaData = (i: number, e: React.SyntheticEvent<HTMLVideoElement>) => setLoadedData((pre) => [...pre, e]);
 
   useEffect(() => {
     let currentProgress = 0;
@@ -106,67 +113,25 @@ const CategorySection = () => {
     }
   }, [videoId, startPlay])
 
-  const categories = [
-    {
-      id: 1,
-      textLists: [
-        "Enter A17 Pro.",
-        "Game‑changing chip.",
-        "Groundbreaking performance.",
-      ],
-      video: '/videos/category-first.mp4',
-      videoDuration: 4,
-    },
-    {
-      id: 2,
-      textLists: ["Titanium.", "So strong. So light. So Pro."],
-      video: '/videos/category-second.mp4',
-      videoDuration: 5,
-    },
-    {
-      id: 3,
-      textLists: [
-        "iPhone 15 Pro Max has the",
-        "longest optical zoom in",
-        "iPhone ever. Far out.",
-      ],
-      video: '/videos/category-third.mp4',
-      videoDuration: 2,
-    },
-    {
-      id: 4,
-      textLists: ["All-new Action button.", "What will yours do?."],
-      video: '/videos/category-four.mp4',
-      videoDuration: 3.63,
-    },
-  ];
-
-  interface VideoState {
-    isEnd: boolean;
-    startPlay: boolean;
-    videoId: number;
-    isLastVideo: boolean;
-    isPlaying: boolean;
-  }
 
   type HandleProcessType = 'video-end' | 'video-last' | 'video-reset' | 'play';
 
-  const handleProcess = (type: HandleProcessType, i: number): void => {
+  const handleProcess = (type: HandleProcessType, i: number) => {
     switch (type) {
       case 'video-end':
-        setVideo((prev: VideoState) => ({ ...prev, isEnd: true, videoId: i + 1 }));
+        setVideo((pre) => ({ ...pre, isEnd: true, videoId: i + 1 }));
         break;
       case 'video-last':
-        setVideo((prev: VideoState) => ({ ...prev, isLastVideo: true }));
+        setVideo((pre) => ({ ...pre, isLastVideo: true }));
         break;
       case 'video-reset':
-        setVideo((prev: VideoState) => ({ ...prev, isLastVideo: false, videoId: 0 }));
+        setVideo((pre) => ({ ...pre, isLastVideo: false, videoId: 0 }));
         break;
       case 'play':
-        setVideo((prev: VideoState) => ({ ...prev, isPlaying: !prev.isPlaying }));
+        setVideo((pre) => ({ ...pre, isPlaying: !pre.isPlaying }));
         break;
       default:
-        return;
+        return video;
     }
   };
 
@@ -176,13 +141,18 @@ const CategorySection = () => {
       <div className='text-3xl font-bold m-5 md:text-5xl bg-gradient-to-t from-gray-500 to-white bg-clip-text text-transparent'>
         <h2>Categories</h2>
       </div>
-      <div className='flex items-center overflow-hidden'>
+      <div className='flex items-center px-5 overflow-hidden'>
         {
           categories.map((list, i) => (
             <div key={list.id} id='slider' className='sm:pr-20 pr-10'>
               <div className='video-carousel_container'>
                 <div className='w-full h-full flex-center rounded-3xl overflow-hidden bg-black'>
-                  <video id='video' playsInline={true} preload='auto' muted ref={(el) => (videoRef.current[i] = el)}
+                  <video id='video' className='video-item' playsInline={true} preload='auto' muted ref={(el) => (videoRef.current[i] = el)}
+                    onEnded={() => 
+                      i !== 3
+                      ? handleProcess('video-end', i)
+                      : handleProcess('video-last')
+                    }
                     onPlay={
                       () => {
                         setVideo((prevVideo) => ({
@@ -190,29 +160,28 @@ const CategorySection = () => {
                         }))
                       }
                     }
-                    onLoadedMetadata={(e) => handleLoadedMetaData(i, e.nativeEvent)}>
+                    onLoadedMetadata={(e) => handleLoadedMetaData(i, e)}>
                     <source src={list.video} type='video/mp4' />
                   </video>
                 </div>
 
                 <div className='absolute top-12 left-[5%] z-10'>
                   {list.textLists.map((text) => (
-                    <p key={text} className='md:text-2xl text-xl font-medium'>
+                    <p key={text} className='md:text-2xl text-xs text-left font-medium'>
                       {text}
                     </p>
                   ))}
                 </div>
               </div>
             </div>
-          ))
-        }
+          ))}
       </div>
 
       <div className='relative flex-center mt-10'>
         <div className='flex-center py-5 px-7 bg-neutral-700 backdrop-blur rounded-full'>
           {videoRef.current.map((_, i) => (
-            <span key={i} ref={(el) => (videoDivRef.current[i] = el)} className='mx-2 w-3 h-3 bg-gray-200 rounded-full relative cursor-pointer'>
-              <span className='absolute h-full w-full rounded-full' ref={(el) => (videoSpanRef.current[i] = el)} />
+            <span key={i} ref={(el) => (videoDivRef.current[i] = el)} className='mx-2 w-3 h-3 bg-gray-400 rounded-full relative cursor-pointer'>
+              <span className='left-0 absolute h-full w-full rounded-full' ref={(el) => (videoSpanRef.current[i] = el)} />
             </span>
           ))}
         </div>

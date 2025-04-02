@@ -15,6 +15,8 @@ import {
 import { Button } from "./ui/button.js";
 import SignOut from "./SignOut.js";
 import Profile from "./Profile.js";
+import { MenuIcon } from "lucide-react";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from "./ui/dropdown-menu.js";
 
 const NavBar = () => {
   const [session, setSession] = useState<any>({});
@@ -82,7 +84,7 @@ const NavBar = () => {
           </div>
         )}
 
-        <div className="flex gap-2 items-center">
+        <div className="flex gap-[3px] items-center sm:gap-2">
           <div className="navItems cursor-pointer">
             <svg
               onClick={() => setOpen(true)}
@@ -125,7 +127,7 @@ const NavBar = () => {
               <Link to={"/sign-in"}>
                 <Button
                   variant="default"
-                  className="navItems dark font-bold bg-linear-to-t from-gray-500 to-white"
+                  className="navItems hidden dark font-bold bg-linear-to-t from-gray-500 to-white sm:block"
                 >
                   Login
                 </Button>
@@ -133,11 +135,31 @@ const NavBar = () => {
               <Link to={"/sign-up"}>
                 <Button
                   variant="default"
-                  className="navItems dark font-bold bg-linear-to-t from-gray-500 to-white"
+                  className="navItems hidden dark font-bold bg-linear-to-t from-gray-500 to-white sm:block"
                 >
                   SignUp
                 </Button>
               </Link>
+              <div className="flex-center">
+                <DropdownMenu>
+                  <DropdownMenuTrigger>
+                    <MenuIcon className="size-8 sm:hidden"/>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="dark flex-center flex-col gap-2 sm:hidden">
+                    <Link to={"/sign-in"} className="w-full">
+                      <Button variant="default" className="w-full font-bold bg-linear-to-t from-gray-500 to-white sm:block">
+                        Login
+                      </Button>
+                    </Link>
+                    <Link to={"/sign-up"} className="w-full">
+                      <Button variant="default" className="w-full font-bold bg-linear-to-t from-gray-500 to-white sm:block">
+                        SignUp
+                      </Button>
+                    </Link>
+                    {/* <SignOut session={session} setSession={setSession} /> */}
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
             </>
           ) : (
             <>

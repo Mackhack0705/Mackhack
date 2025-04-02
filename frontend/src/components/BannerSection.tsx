@@ -7,7 +7,7 @@ const BannerSection = () => {
           id="bannerText"
           className="bg-linear-to-t from-gray-500 to-white bg-clip-text text-transparent text-5xl sm:text-6xl md:text-7xl xl:text-8xl"
         >
-          Best Platform To Get You a High Paying Job
+          Best Platform To Get You a <br /> High Paying Job
         </span>
    </div>
   )
