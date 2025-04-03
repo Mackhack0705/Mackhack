@@ -2,6 +2,7 @@ import AboutSection from '@/components/AboutSection.js'
 import BannerSection from '@/components/BannerSection.js'
 import Brand from '@/components/Brand.js'
 import CategorySection from '@/components/CategorySection.js'
+import LogoScroll from '@/components/LogoScroll.js'
 import ReviewSection from '@/components/ReviewSection.js'
 import VideoSection from '@/components/VideoSection.js'
 
@@ -34,7 +35,8 @@ const Landing = () => {
     <div className='h-screen w-full dark'>
       <BannerSection /> 
       <CategorySection />
-      {/* <div >
+      <LogoScroll />
+      <div >
         <div className='text-3xl text-center font-bold md:text-5xl'>
           <h2>Brands</h2>
         </div> <br />
@@ -57,7 +59,7 @@ const Landing = () => {
           }
         </div>
       </div>
-      <AboutSection /> */}
+      <AboutSection />
     </div>
   )
 }

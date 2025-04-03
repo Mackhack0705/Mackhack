@@ -30,9 +30,9 @@ const CategorySection = () => {
       duration: 2,
       ease: 'power2.inOut',
     })
-    gsap.to('.video-item', {
+    gsap.to('#video', {
       scrollTrigger: {
-        trigger: '.video-item',
+        trigger: '#video',
         toggleActions: 'restart none none none'
       },
       onComplete: () => {
@@ -114,7 +114,7 @@ const CategorySection = () => {
   }, [videoId, startPlay])
 
 
-  type HandleProcessType = 'video-end' | 'video-last' | 'video-reset' | 'play';
+  type HandleProcessType = 'video-end' | 'video-last' | 'video-reset' | 'play' | 'pause';
 
   const handleProcess = (type: HandleProcessType, i: number) => {
     switch (type) {
@@ -128,6 +128,9 @@ const CategorySection = () => {
         setVideo((pre) => ({ ...pre, isLastVideo: false, videoId: 0 }));
         break;
       case 'play':
+        setVideo((pre) => ({ ...pre, isPlaying: !pre.isPlaying }));
+        break;
+      case 'pause':
         setVideo((pre) => ({ ...pre, isPlaying: !pre.isPlaying }));
         break;
       default:
@@ -147,7 +150,10 @@ const CategorySection = () => {
             <div key={list.id} id='slider' className='sm:pr-20 pr-10'>
               <div className='video-carousel_container'>
                 <div className='w-full h-full flex-center rounded-3xl overflow-hidden bg-black'>
-                  <video id='video' className='video-item' playsInline={true} preload='auto' muted ref={(el) => (videoRef.current[i] = el)}
+                  <video id='video' className={`${
+                    list.id === 2 ? 'translate-x-44' : ''}
+                    pointer-events-none
+                  `} playsInline={true} preload='auto' muted ref={(el) => (videoRef.current[i] = el)}
                     onEnded={() => 
                       i !== 3
                       ? handleProcess('video-end', i)

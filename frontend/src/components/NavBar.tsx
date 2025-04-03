@@ -84,7 +84,7 @@ const NavBar = () => {
           </div>
         )}
 
-        <div className="flex gap-[3px] items-center sm:gap-2">
+        <div className="flex gap-[3px] items-center sm:gap-2 lg:gap-4">
           <div className="navItems cursor-pointer">
             <svg
               onClick={() => setOpen(true)}
