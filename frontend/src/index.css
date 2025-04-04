@@ -127,6 +127,15 @@
   @apply flex items-center justify-center;
 }
 
+.scroller {
+  -webkit-mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+  mask: linear-gradient(90deg, transparent, white 20%, white 80%, transparent);
+}
+.scroll_inner {
+  width: max-content;
+  flex-wrap: nowrap;
+}
+
 @layer utilities {
   /* .flex-center {
     @apply flex items-center justify-center
@@ -136,5 +145,15 @@
   }
   .control-btn {
     @apply ml-4 p-4 cursor-pointer rounded-full bg-neutral-700 backdrop-blur flex-center
+  }
+}
+
+@theme {
+  --animate-scroll: infinite-scroll 10s linear infinite;
+
+  @keyframes infinite-scroll {
+    100% {
+      transform: translate(calc(-50% - 0.25rem));
+    }
   }
 }
