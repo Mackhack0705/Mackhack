@@ -10,6 +10,12 @@ import facebook from "../assets/facebook.svg";
 import bmw from "../assets/bmw.svg";
 import netflix from "../assets/netflix.svg";
 import twitter from "../assets/twitter.svg";
+import soundCloud from "../assets/soundCloud.svg";
+import airbnb from "../assets/airbnb.svg";
+import cocacola from "../assets/cocacola.svg";
+import etherum from "../assets/etherum.svg";
+import ola from "../assets/ola.svg";
+import redbull from "../assets/redbull.svg";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -24,3 +30,9 @@ export const facebookImg = facebook;
 export const netflixImg = netflix;
 export const twitterImg = twitter;
 export const bmwImg = bmw;
+export const soundCloudImg = soundCloud;
+export const airbnbImg = airbnb;
+export const cocacolaImg = cocacola;
+export const etherumImg = etherum;
+export const olaImg = ola;
+export const redbullImg = redbull;

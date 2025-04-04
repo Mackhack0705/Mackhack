@@ -35,18 +35,11 @@ const Landing = () => {
     <div className='h-screen w-full dark'>
       <BannerSection /> 
       <CategorySection />
-      <LogoScroll />
       <div >
         <div className='text-3xl text-center font-bold md:text-5xl'>
-          <h2>Brands</h2>
-        </div> <br />
-        <div className='flex justify-around py-5 flex-wrap xl:m-10'>
-          <Brand link={"/images/facebook.png"}/>
-          <Brand link={"/images/microsoft.png"}/>
-          <Brand link={"/images/apple.png"}/>
-          <Brand link={"/images/netflix.png"}/>
-          <Brand link={"/images/google.png"}/>
+          <h2 className="bg-gradient-to-t from-gray-500 to-white bg-clip-text text-transparent">Brands</h2>
         </div>
+        <LogoScroll />
       </div>
       <VideoSection />
       <div className='xl:mt-60 xl:mb-20'>
