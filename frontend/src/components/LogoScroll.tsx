@@ -60,7 +60,7 @@ const LogoScroll = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="scroller py-12">
+    <div ref={containerRef} className="scroller py-12 overflow-hidden">
       <div
         className="scroll_inner flex flex-wrap py-8 items-center gap-2 animate-scroll"
       >
