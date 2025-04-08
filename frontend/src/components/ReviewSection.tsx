@@ -1,27 +1,48 @@
 import gsap from "gsap"
+import { useRef } from"react"
+import { reviews } from "@/constants/index.js"
 
-const ReviewSection = ({ review }) => {
-  let scaleUp = function () {
-    gsap.to(`#review${review.id}`, {
-      scale: 1.1,
-      duration: 1,
-    })
-  } 
-  let scaleDown = function () {
-    gsap.to(`#review${review.id}`, {
-      scale: 1,
-      duration: 1,
-    })
-  }
+const ReviewCard = ({ children }: { children: any}) => {
+  const divRef = useRef<HTMLDivElement>(null);
+
+  interface MouseMoveEvent extends React.MouseEvent<HTMLDivElement, MouseEvent> {}
+
+  const handleMouseMove = (e: MouseMoveEvent) => {
+    const rect = divRef.current?.getBoundingClientRect();
+    if (!rect) return;
+
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    divRef.current?.style.setProperty("--mouse-x", `${x}px`);
+    divRef.current?.style.setProperty("--mouse-y", `${y}px`);
+    divRef.current?.style.setProperty("--spotlight-color", "rgba(255, 255, 255, 0.25)");
+  };
 
   return (
-    <div id={`review${review.id}`} onMouseEnter={scaleUp} onMouseLeave={scaleDown} className='border-[1px] border-gray-400 bg-white h-40 w-80 px-2 py-5 rounded-xl m-4 flex justify-between flex-wrap md:px-6 lg:w-52 lg:h-64 lg:justify-center lg:py-2 xl:w-64 xl:h-72 '>
-        <div className='flex flex-col items-center my-5'>
-            <img src={review.reviewImage} alt="" className='h-14 w-14 rounded-full object-contain xl:h-20 xl:w-20'/> <span className='text-sm font-semibold mt-2 md:mt-0'>{review.userName}</span>
-        </div>
-        <div className="px-2 text-justify text-xs w-40 mb-8 md:py-2 xl:px-0">
-          <h3>{review.reviewText}</h3>
-        </div>
+    <div
+      ref={divRef}
+      onMouseMove={handleMouseMove}
+      className='card-spotlight custom-spotlight-card'
+    >
+      <div className='flex flex-col justify-center items-center w-full h-full p-4 rounded-lg shadow-lg'>
+        <img src={children.userImg} alt="User" className='w-16 h-16 rounded-full mb-4' />
+        <h3 className='text-xl font-semibold'>{children.userName}</h3>
+        <p className='text-neutral-700 text-center'>{children.reviewText}</p>
+      </div>
+    </div>
+  )
+}
+
+const ReviewSection = () => {
+
+  return (
+    <div className="flex justify-between my-20 px-10">
+      {reviews.map((review) => (
+        <ReviewCard key={review.id}>
+          {review}
+        </ReviewCard>
+      ))}
     </div>
   )
 }

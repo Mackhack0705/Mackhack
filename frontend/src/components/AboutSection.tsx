@@ -2,14 +2,16 @@ import { Link } from "react-router-dom"
 
 const AboutSection = () => {
   return (
-    <div className='bg-[#9ce2cf] h-[500px] flex flex-wrap justify-around py-10 md:h-80 lg:flex-nowrap lg:h-60 lg:px-4'>
+    <div className=' h-[500px] flex flex-wrap justify-around py-10 md:h-80 lg:flex-nowrap lg:h-60 lg:px-4'>
         <div className="flex flex-wrap flex-col gap-3 md:flex-row md:gap-10 lg:gap-1 xl:flex-col">
-            <div id="logo" className="text-3xl font-bold mb-4">
-                M<span className="text-[#01c8b5]">a</span>ke
-                <span className="text-[#01c8b5]">hack</span>
+            <div
+                id="logo"
+                className="text-3xl font-bold mb-4 bg-gradient-to-t from-gray-500 to-white text-transparent bg-clip-text"
+            >
+                Mackhack
             </div>
-            <input type="text" placeholder="Search" className="p-2 rounded-md md:h-10"/>
-            <button className="border-[1px] border-black px-4 py-2 rounded-md md:h-10">Subscribe</button>
+            <input type="text" placeholder="Search" className="p-2 rounded-md border border-white md:h-10"/>
+            <button className="border-[1px] border-white px-4 py-2 rounded-md md:h-10">Subscribe</button>
         </div>
         <div className="flex flex-wrap items-center flex-col py-2 w-[800px] md:flex-row md:justify-center lg:flex-nowrap lg:items-start lg:py-0">
             <div className="p-2 text-lg font-semibold w-52 md:ml-24 lg:p-0">
