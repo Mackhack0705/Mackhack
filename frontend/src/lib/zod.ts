@@ -30,3 +30,21 @@ export const signInSchema = object({
   email: getEmailSchema(),
   password: getPasswordSchema("password"),
 })
+
+export const courseSchema = object({
+  title: string({ required_error: "Title is required" }),
+  description: string({ required_error: "Description is required" }),
+  price: string({ required_error: "Price is required" })
+    .min(1, "Price is required")
+    .regex(/^\d+$/, "Price must be a number"),
+  imageUrl: string({ required_error: "Image URL is required" })
+    .url("Invalid URL"),
+  lessonTitle: string({ required_error: "Lesson Title is required" }),
+  lessonDescription: string({ required_error: "Lesson Description is required" }),
+  lessonDuration: string({ required_error: "Lesson Duration is required" })
+    .regex(/^\d+$/, "Lesson Duration must be a number"),
+  lessonVideoUrl: string({ required_error: "Lesson Video URL is required" })
+    .url("Invalid URL"),
+  lessonImageUrl: string({ required_error: "Lesson Image URL is required" })
+    .url("Invalid URL")
+});

@@ -6,6 +6,7 @@ const AllCourses = () => {
     const [courses, setCourses] = useState([]);
     useEffect(() => {
         setCourses(location.state);
+        console.log(location.state);
     }, []);
     console.log(location.state)
 

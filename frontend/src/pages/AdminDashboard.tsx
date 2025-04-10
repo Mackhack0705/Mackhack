@@ -22,10 +22,10 @@ const AdminDashboard = () => {
   return (
     <div className="flex flex-wrap justify-center">
       <div className="flex flex-wrap w-full justify-center gap-2 text-center items-center md:justify-around">
-        <h1 className="text-3xl font-bold md:text-4xl lg:text-5xl">A<span className="text-[#01c8b5]">d</span>min D<span className="text-[#01c8b5]">a</span>sh<span className="text-[#01c8b5]">board</span></h1>
+        <h1 className="text-3xl font-bold md:text-4xl lg:text-5xl">Admin Dashboard</h1>
         <button onClick={() => {
           navigate("/admin/addCourse");
-        }} className="bg-[#01c8b5] text-sm font-semibold p-2 rounded-xl md:text-base lg:text-lg">Create Course</button>
+        }} className="border border-[#333] cursor-pointer text-sm font-semibold p-2 rounded-xl md:text-base lg:text-lg">Create Course</button>
       </div>
       <div className="my-4">
         {

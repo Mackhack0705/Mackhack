@@ -5,7 +5,7 @@ import AllCourses from "@/components/AllCourses.js";
 import Teaching from "@/pages/Teaching.js";
 import AdminDashboard from "@/pages/AdminDashboard.js";
 import NavBar from "@/components/NavBar.js";
-// import AddCourse from "@/components/AddCourse.js";
+import AddCourse from "@/components/AddCourse.js";
 import AboutUs from "@/pages/AboutUs.js";
 import Contact from "@/pages/Contact.js";
 import LoginFailed from "@/pages/LoginFailed.js";
@@ -79,14 +79,14 @@ function App() {
             </React.Suspense>
           }
         />
-        {/* <Route
+        <Route
           path="/admin/addCourse"
           element={
             <React.Suspense fallback={<Loader />}>
               <AddCourse />
             </React.Suspense>
           }
-        /> */}
+        />
         <Route 
           path="/aboutUs"
           element={
