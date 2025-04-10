@@ -147,7 +147,6 @@
     @apply ml-4 p-4 cursor-pointer rounded-full bg-neutral-700 backdrop-blur flex-center
   }
   .card-spotlight {
-    width: 20%;
     position: relative;
     border-radius: 1.5rem;
     border: 1px solid #333;
