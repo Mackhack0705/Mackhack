@@ -8,6 +8,7 @@ import { z } from 'zod';
 import { Input } from './ui/input.js';
 import { courseSchema } from '@/lib/zod.js';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Upload } from 'lucide-react';
 // import { useRecoilState } from 'recoil';
 // import { lessonAtom } from '../store/atoms/lessons';
 
@@ -141,9 +142,11 @@ const AddCourse = () => {
                                     <Input type={
                                         field === 'price'
                                         ? 'number'
+                                        : field === 'imageUrl'
+                                        ? 'file'
                                         : 'text'
                                     }
-                                    className={`${field === 'imageUrl' ? 'hidden' : ''} w-1/3`}
+                                    className={`${field === 'imageUrl' ? 'hidden upload' : ''} w-1/3`}
                                     placeholder={`Enter your ${field}`}
                                     {...fieldProps}
                                     />
@@ -156,9 +159,14 @@ const AddCourse = () => {
             </form>
         </Form>
 
-        <div className='border border-[#333] cursor-pointer p-4 rounded-xl text-center absolute top-36 right-60 w-1/3 h-60 hover:border-white hover:shadow-lg hover:shadow-white/100 transition-all duration-300'>
+        <div onClick={() => {
+            document.querySelector<HTMLInputElement>('.upload')?.click();
+        }} className='border border-[#333] cursor-pointer flex flex-col justify-center items-center gap-2 p-4 rounded-xl absolute top-35 right-60 w-1/3 h-60 hover:border-white hover:shadow-lg hover:shadow-white/100 hover:translate-x-2 hover:-translate-y-2 transition-all duration-300'>
             <h5>Upload Course Image</h5>
             <p>Drag and drop your files here or click to upload</p>
+            <Upload
+            size={100}
+            />
         </div>
     </div>
   )
