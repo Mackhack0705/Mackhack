@@ -20,12 +20,12 @@ const AdminDashboard = () => {
     }
   }, []);
   return (
-    <div className="flex flex-wrap justify-center">
+    <div className="flex flex-wrap justify-center py-20">
       <div className="flex flex-wrap w-full justify-center gap-2 text-center items-center md:justify-around">
         <h1 className="text-3xl font-bold md:text-4xl lg:text-5xl">Admin Dashboard</h1>
         <button onClick={() => {
           navigate("/admin/addCourse");
-        }} className="border border-[#333] cursor-pointer text-sm font-semibold p-2 rounded-xl md:text-base lg:text-lg">Create Course</button>
+        }} className="border border-[#333] p-4 cursor-pointer text-sm font-semibold p-2 rounded-xl md:text-base lg:text-lg">Create Course</button>
       </div>
       <div className="my-4">
         {

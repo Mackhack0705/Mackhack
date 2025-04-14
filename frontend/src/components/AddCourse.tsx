@@ -9,11 +9,13 @@ import { Input } from './ui/input.js';
 import { courseSchema } from '@/lib/zod.js';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Upload } from 'lucide-react';
+import LoadingButton from './LoadingButton.js';
 // import { useRecoilState } from 'recoil';
 // import { lessonAtom } from '../store/atoms/lessons';
 
 const AddCourse = () => {
     const {register, handleSubmit} = useForm();
+    const [pendingCredentials, setPendingCredentilas] = useState(false);
     const navigate = useNavigate();
     // const [lessons, setLessons] = useRecoilState(lessonAtom);
     const lessonContainer = useRef<HTMLDivElement>();
@@ -54,6 +56,7 @@ const AddCourse = () => {
     });
 
     const handleCourseData = async (data: z.infer<typeof courseSchema>) => {
+        console.log(data);
     }
 
     // async function handleImageUpload(imageFile) {
@@ -156,6 +159,7 @@ const AddCourse = () => {
                         )}
                     />
                 ))}
+            <LoadingButton pending={pendingCredentials}>Submit</LoadingButton>
             </form>
         </Form>
 
