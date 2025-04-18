@@ -16,6 +16,9 @@ import LoadingButton from './LoadingButton.js';
 const AddCourse = () => {
     const {register, handleSubmit} = useForm();
     const [pendingCredentials, setPendingCredentilas] = useState(false);
+    const [courseImg, setCourseImg] = useState('');
+    const uploadBox = useRef<HTMLDivElement>(null);
+    const imgBox = useRef<HTMLDivElement>(null);
     const navigate = useNavigate();
     // const [lessons, setLessons] = useRecoilState(lessonAtom);
     const lessonContainer = useRef<HTMLDivElement>();
@@ -46,12 +49,7 @@ const AddCourse = () => {
                 title: "",
                 description: "",
                 price: "",
-                imageUrl: "",
-                lessonTitle: "",
-                lessonDescription: "",
-                lessonDuration: "",
-                lessonVideoUrl: "",
-                lessonImageUrl: "",
+                imageUrl: ""
             },
     });
 
@@ -130,8 +128,8 @@ const AddCourse = () => {
   return (
     <div className='px-20 py-3'>
         <Form {...form}>
-            <form onSubmit={form.handleSubmit(handleCourseData)}>
-                {['title', 'description', 'price', 'imageUrl', 'lessonTitle', 'lessonDescription', 'lessonDuration', 'lessonVideoUrl', 'lessonImageUrl'].map((field) => (
+            <form onSubmit={form.handleSubmit(handleCourseData)} className='w-8/9'>
+                {['title', 'description', 'price', 'image'].map((field) => (
                     <FormField
                         control={form.control}
                         key={field} 
@@ -143,13 +141,11 @@ const AddCourse = () => {
                                 </FormLabel>
                                 <FormControl>
                                     <Input type={
-                                        field === 'price'
-                                        ? 'number'
-                                        : field === 'imageUrl'
+                                        field === 'image'
                                         ? 'file'
                                         : 'text'
                                     }
-                                    className={`${field === 'imageUrl' ? 'hidden upload' : ''} w-1/3`}
+                                    className={`${field === 'image' ? 'hidden upload' : ''} w-1/3`}
                                     placeholder={`Enter your ${field}`}
                                     {...fieldProps}
                                     />
@@ -163,14 +159,33 @@ const AddCourse = () => {
             </form>
         </Form>
 
-        <div onClick={() => {
+        <div ref={uploadBox} onClick={() => {
             document.querySelector<HTMLInputElement>('.upload')?.click();
+            document.querySelector<HTMLInputElement>('.upload')?.addEventListener('change', (e) => {
+                const file = e?.target?.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        setCourseImg(e.target?.result as string);
+                    };
+                    reader.readAsDataURL(file);
+                    uploadBox.current?.classList.remove('flex');
+                    uploadBox.current?.classList.add('hidden');
+                    imgBox.current?.classList.remove('hidden');
+                    imgBox.current?.classList.add('flex');
+                    
+                }
+            })
         }} className='border border-[#333] cursor-pointer flex flex-col justify-center items-center gap-2 p-4 rounded-xl absolute top-35 right-60 w-1/3 h-60 hover:border-white hover:shadow-lg hover:shadow-white/100 hover:translate-x-2 hover:-translate-y-2 transition-all duration-300'>
             <h5>Upload Course Image</h5>
             <p>Drag and drop your files here or click to upload</p>
             <Upload
             size={100}
             />
+        </div>
+
+        <div ref={imgBox} className='border border-[#333] cursor-pointer hidden flex-col justify-center items-center gap-2 rounded-xl absolute top-35 right-60 w-1/3 h-60 hover:border-white hover:shadow-lg hover:shadow-white/100 hover:translate-x-2 hover:-translate-y-2 transition-all duration-300'>
+            <img src={courseImg} alt="upload" className='w-full h-full' />
         </div>
     </div>
   )
