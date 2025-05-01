@@ -50,7 +50,7 @@ const Profile = ({session}: {session: any}) => {
             />
           </svg>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="dark">
+        <DropdownMenuContent className="dark mr-5">
           <DropdownMenuLabel>{session.user.name}</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <DropdownMenuItem>

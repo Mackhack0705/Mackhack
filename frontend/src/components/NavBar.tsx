@@ -145,7 +145,7 @@ const NavBar = () => {
                   <DropdownMenuTrigger>
                     <MenuIcon className="size-8 sm:hidden"/>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent className="dark flex-center flex-col gap-2 sm:hidden">
+                  <DropdownMenuContent className="dark p-4 flex-center flex-col gap-2 sm:hidden">
                     <Link to={"/sign-in"} className="w-full">
                       <Button variant="default" className="w-full font-bold bg-linear-to-t from-gray-500 to-white sm:block">
                         Login

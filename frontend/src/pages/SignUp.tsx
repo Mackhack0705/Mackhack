@@ -72,7 +72,7 @@ export default function SignUp() {
     }
 
     return (
-        <div className='grow flex justify-center items-center py-20'>
+        <div className='grow px-8 flex justify-center items-center py-20'>
             <Card className='w-full max-w-md'>
                 <CardHeader>
                     <CardTitle className="text-3xl font-bold text-center text-transparent bg-clip-text bg-linear-to-t from-gray-800 to-white">Create Account</CardTitle>
