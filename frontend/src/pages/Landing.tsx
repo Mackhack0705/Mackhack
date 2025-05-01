@@ -12,7 +12,7 @@ const Landing = () => {
     <div className='h-screen w-full dark'>
       <BannerSection /> 
       <CategorySection />
-      <div >
+      <div className='my-20'>
         <div className='text-3xl text-center font-bold md:text-5xl'>
           <h2 className="bg-gradient-to-t from-gray-500 to-white bg-clip-text text-transparent">Brands</h2>
         </div>

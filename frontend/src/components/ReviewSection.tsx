@@ -37,7 +37,7 @@ const ReviewCard = ({ children }: { children: any}) => {
 const ReviewSection = () => {
 
   return (
-    <div className="flex justify-between my-20 px-2 gap-2 flex-wrap md:px-8 md:gap-2 lg:px-4 lg:gap-1 xl:px-10">
+    <div className="flex justify-between my-20 px-2 gap-8 flex-wrap md:px-8 md:gap-2 lg:px-4 lg:gap-1 xl:px-10">
       {reviews.map((review) => (
         <ReviewCard key={review.id}>
           {review}

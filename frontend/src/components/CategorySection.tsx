@@ -140,11 +140,11 @@ const CategorySection = () => {
 
 
   return (
-    <section className='h-screen text-center'>
+    <section className='h-2/3 md:h-screen text-center'>
       <div className='text-3xl font-bold m-5 md:text-5xl bg-gradient-to-t from-gray-500 to-white bg-clip-text text-transparent'>
         <h2>Categories</h2>
       </div>
-      <div className='flex items-center px-5 overflow-hidden'>
+      <div className='flex items-center my-14 md:my-0 px-5 overflow-hidden'>
         {
           categories.map((list, i) => (
             <div key={list.id} id='slider' className='sm:pr-20 pr-10'>
