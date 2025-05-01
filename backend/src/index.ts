@@ -2,7 +2,7 @@ import express from 'express';
 import { toNodeHandler } from 'better-auth/node';
 import { auth } from './auth';
 import bodyParser from 'body-parser';
-// import adminRoute from './routes/admin';
+import adminRoute from './routes/admin';
 // import userRoute from './routes/user';
 // import searchRoute from './routes/search';
 // import courseRoute from './routes/course';
@@ -23,7 +23,7 @@ app.all("/api/auth/*", toNodeHandler(auth), (req, res) => {
 });
 
 app.use(bodyParser.json());
-// app.use('/admin', adminRoute);
+app.use('/admin', adminRoute);
 // app.use('/user', userRoute);
 // app.use('/search', searchRoute);
 // app.use('/course', courseRoute);

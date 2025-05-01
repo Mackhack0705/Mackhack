@@ -151,18 +151,24 @@ router.post('/upload-video', async (req, res): Promise<any> => {
 })
 
 router.post('/courses/add', async (req, res) => {
-    const body = req.body;
-    
+    const body = {
+        ...req.body,
+        price: Number(req.body.price),
+        instructorId: '123'
+    };
+    console.log(body);
     try {
         const course = await prisma.course.create({
             data: body
         });
+        console.log(course);
         res.status(200).json({
             msg: "Course created successfully"
         })
     } catch (err) {
         res.status(200).json({
-            msg: "Course already exists"
+            msg: "Course already exists",
+            err: err
         })
     }
 })

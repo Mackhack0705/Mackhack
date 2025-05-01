@@ -55,6 +55,8 @@ const AddCourse = () => {
 
     const handleCourseData = async (data: z.infer<typeof courseSchema>) => {
         console.log(data);
+        const response = await axios.post('http://localhost:8000/admin/courses/add', data);
+        console.log(response);
     }
 
     // async function handleImageUpload(imageFile) {
@@ -129,7 +131,7 @@ const AddCourse = () => {
     <div className='px-20 py-3'>
         <Form {...form}>
             <form onSubmit={form.handleSubmit(handleCourseData)} className='w-8/9'>
-                {['title', 'description', 'price', 'image'].map((field) => (
+                {['title', 'description', 'price', 'imageUrl'].map((field) => (
                     <FormField
                         control={form.control}
                         key={field} 
@@ -141,11 +143,11 @@ const AddCourse = () => {
                                 </FormLabel>
                                 <FormControl>
                                     <Input type={
-                                        field === 'image'
+                                        field === 'imageUrl'
                                         ? 'file'
                                         : 'text'
                                     }
-                                    className={`${field === 'image' ? 'hidden upload' : ''} w-1/3`}
+                                    className={`${field === 'imageUrl' ? 'hidden upload' : ''} w-full md:w-1/3`}
                                     placeholder={`Enter your ${field}`}
                                     {...fieldProps}
                                     />
@@ -176,15 +178,15 @@ const AddCourse = () => {
                     
                 }
             })
-        }} className='border border-[#333] cursor-pointer flex flex-col justify-center items-center gap-2 p-4 rounded-xl absolute top-35 right-60 w-1/3 h-60 hover:border-white hover:shadow-lg hover:shadow-white/100 hover:translate-x-2 hover:-translate-y-2 transition-all duration-300'>
+        }} className='border border-[#333] cursor-pointer flex flex-col justify-center items-center gap-2 p-4 rounded-xl absolute top-120 right-24 w-3/5 h-60 hover:border-white hover:shadow-lg hover:shadow-white/100 hover:translate-x-2 hover:-translate-y-2 transition-all duration-300 md:w-1/3 md:top-35 md:right-60'>
             <h5>Upload Course Image</h5>
-            <p>Drag and drop your files here or click to upload</p>
+            <p className='text-sm text-center'>Drag and drop your files here or click to upload</p>
             <Upload
             size={100}
             />
         </div>
 
-        <div ref={imgBox} className='border border-[#333] cursor-pointer hidden flex-col justify-center items-center gap-2 rounded-xl absolute top-35 right-60 w-1/3 h-60 hover:border-white hover:shadow-lg hover:shadow-white/100 hover:translate-x-2 hover:-translate-y-2 transition-all duration-300'>
+        <div ref={imgBox} className='border border-[#333] cursor-pointer hidden flex-col justify-center items-center gap-2 rounded-xl absolute top-120 right-24 w-3/5 h-60 hover:border-white hover:shadow-lg hover:shadow-white/100 hover:translate-x-2 hover:-translate-y-2 transition-all duration-300 md:w-1/3 md:top-35 md:right-60'>
             <img src={courseImg} alt="upload" className='w-full h-full' />
         </div>
     </div>
